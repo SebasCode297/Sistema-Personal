@@ -1,0 +1,303 @@
+/* Estilos del Módulo Dashboard — Fase 3 */
+
+.dashboard-contenedor {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 100%;
+}
+
+/* Header del Dashboard */
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--borde-suave);
+}
+
+.dashboard-header-izq {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.dashboard-insignia {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+  background: rgba(59, 130, 246, 0.15);
+  color: #60a5fa;
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  width: fit-content;
+}
+
+.dashboard-titulo {
+  font-size: 1.85rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--texto-principal);
+}
+
+.dashboard-descripcion {
+  font-size: 0.95rem;
+  color: var(--texto-secundario);
+}
+
+.dashboard-fecha-actual {
+  font-size: 0.85rem;
+  color: var(--texto-muted);
+  font-weight: 500;
+  background: var(--bg-secundario);
+  padding: 0.5rem 0.85rem;
+  border-radius: var(--radio-sm);
+  border: 1px solid var(--borde-suave);
+  align-self: center;
+}
+
+/* Cuadrícula de Métricas Resumidas */
+.dashboard-grid-metricas {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+
+/* Tarjeta Métrica Individual */
+.tarjeta-metrica {
+  background: var(--bg-tarjeta);
+  border: 1px solid var(--borde-suave);
+  border-radius: var(--radio-md);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.25rem;
+  transition: var(--transicion);
+  position: relative;
+  overflow: hidden;
+}
+
+.tarjeta-metrica:hover {
+  background: var(--bg-tarjeta-hover);
+  border-color: rgba(255, 255, 255, 0.16);
+  transform: translateY(-2px);
+}
+
+.tarjeta-metrica-superior {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.tarjeta-metrica-etiqueta {
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--texto-muted);
+}
+
+.tarjeta-metrica-badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--texto-secundario);
+}
+
+.tarjeta-metrica-badge.positivo {
+  background: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+}
+
+.tarjeta-metrica-badge.alerta {
+  background: rgba(245, 158, 11, 0.15);
+  color: #fbbf24;
+}
+
+.tarjeta-metrica-cuerpo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.tarjeta-metrica-valor {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--texto-principal);
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+.tarjeta-metrica-subtexto {
+  font-size: 0.85rem;
+  color: var(--texto-secundario);
+}
+
+.tarjeta-metrica-footer {
+  border-top: 1px solid var(--borde-suave);
+  padding-top: 0.85rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tarjeta-metrica-estado {
+  font-size: 0.78rem;
+  color: var(--texto-muted);
+}
+
+.tarjeta-metrica-enlace {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-primario);
+  transition: var(--transicion);
+}
+
+.tarjeta-metrica-enlace:hover {
+  text-decoration: underline;
+}
+
+/* Sección de Módulos del Sistema y Estado */
+.dashboard-seccion-modulos {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-top: 0.5rem;
+}
+
+.dashboard-seccion-titulo {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--texto-principal);
+}
+
+.dashboard-grid-detalles {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1.25rem;
+}
+
+.panel-detalle {
+  background: var(--bg-tarjeta);
+  border: 1px solid var(--borde-suave);
+  border-radius: var(--radio-md);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.panel-detalle-titulo {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--texto-principal);
+  border-bottom: 1px solid var(--borde-suave);
+  padding-bottom: 0.75rem;
+}
+
+.lista-modulos-independientes {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.item-modulo-independiente {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 0.9rem;
+  background: var(--bg-secundario);
+  border: 1px solid var(--borde-suave);
+  border-radius: var(--radio-sm);
+  font-size: 0.9rem;
+}
+
+.item-modulo-nombre {
+  font-weight: 600;
+  color: var(--texto-principal);
+}
+
+.item-modulo-estado {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+}
+
+.item-modulo-estado.listo {
+  background: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+}
+
+.item-modulo-estado.siguiente {
+  background: rgba(59, 130, 246, 0.15);
+  color: #60a5fa;
+}
+
+.item-modulo-estado.pendiente {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--texto-muted);
+}
+
+/* Responsividad Tablet */
+@media (max-width: 1024px) {
+  .dashboard-grid-metricas {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .dashboard-grid-detalles {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Responsividad Móvil */
+@media (max-width: 640px) {
+  .dashboard-contenedor {
+    gap: 1.5rem;
+  }
+
+  .dashboard-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+
+  .dashboard-titulo {
+    font-size: 1.5rem;
+  }
+
+  .dashboard-fecha-actual {
+    align-self: flex-start;
+  }
+
+  .dashboard-grid-metricas {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .tarjeta-metrica {
+    padding: 1.25rem;
+  }
+
+  .tarjeta-metrica-valor {
+    font-size: 1.75rem;
+  }
+
+  .item-modulo-independiente {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+}

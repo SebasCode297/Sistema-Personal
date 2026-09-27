@@ -5,7 +5,7 @@ import { RutaProtegida } from "./modulos/auth/componentes/RutaProtegida";
 import { LoginPagina } from "./modulos/auth/paginas/LoginPagina";
 import { RegistroPagina } from "./modulos/auth/paginas/RegistroPagina";
 import { Layout } from "./componentes/Layout";
-import { DashboardInicio } from "./paginas/DashboardInicio";
+import { DashboardPagina } from "./modulos/dashboard/paginas/DashboardPagina";
 
 /**
  * Componente para rutas públicas (login/registro):
@@ -49,7 +49,7 @@ function RutasApp() {
       {/* Rutas Privadas / Protegidas */}
       <Route element={<RutaProtegida />}>
         <Route element={<Layout />}>
-          <Route path="/" element={<DashboardInicio />} />
+          <Route path="/" element={<DashboardPagina />} />
         </Route>
       </Route>
 

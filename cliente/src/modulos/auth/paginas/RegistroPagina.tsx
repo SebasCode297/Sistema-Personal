@@ -57,14 +57,12 @@ export const RegistroPagina: React.FC = () => {
     <div className="auth-contenedor">
       <div className="auth-tarjeta">
         <header className="auth-header">
-          <div className="auth-icono-app">🚀</div>
           <h1 className="auth-titulo">Crear Cuenta</h1>
           <p className="auth-subtitulo">Comienza a organizar tu vida con MiPanel</p>
         </header>
 
         {error && (
           <div className="alerta alerta-error" role="alert">
-            <span>⚠️</span>
             <span>{error}</span>
           </div>
         )}

@@ -36,14 +36,12 @@ export const LoginPagina: React.FC = () => {
     <div className="auth-contenedor">
       <div className="auth-tarjeta">
         <header className="auth-header">
-          <div className="auth-icono-app">🔐</div>
           <h1 className="auth-titulo">Iniciar Sesión</h1>
           <p className="auth-subtitulo">Ingresa a tu panel de control personal</p>
         </header>
 
         {error && (
           <div className="alerta alerta-error" role="alert">
-            <span>⚠️</span>
             <span>{error}</span>
           </div>
         )}

@@ -17,7 +17,6 @@ export const Layout: React.FC = () => {
     setMenuMovilAbierto(false);
   }
 
-  // Primera letra del nombre para el avatar
   const inicial = usuario?.nombre ? usuario.nombre.charAt(0).toUpperCase() : "U";
 
   return (
@@ -29,21 +28,23 @@ export const Layout: React.FC = () => {
 
       {/* Barra superior visible solo en pantallas pequeñas */}
       <header className="layout-topbar-movil">
-        <span className="layout-topbar-brand">⚡ MiPanel</span>
+        <span className="layout-topbar-brand">MiPanel</span>
         <button
           type="button"
           className="btn-menu-hamburguesa"
           onClick={() => setMenuMovilAbierto(!menuMovilAbierto)}
-          aria-label="Abrir menú"
+          aria-label="Alternar menú"
         >
-          ☰
+          <span className="icono-linea"></span>
+          <span className="icono-linea"></span>
+          <span className="icono-linea"></span>
         </button>
       </header>
 
       {/* Sidebar de navegación */}
       <aside className={`layout-sidebar ${menuMovilAbierto ? "abierto" : ""}`}>
         <div className="layout-brand">
-          <div className="layout-logo">⚡</div>
+          <div className="layout-logo">MP</div>
           <span className="layout-brand-nombre">MiPanel</span>
         </div>
 
@@ -54,57 +55,36 @@ export const Layout: React.FC = () => {
             className={({ isActive }) => `nav-item ${isActive ? "activo" : ""}`}
             onClick={cerrarMenu}
           >
-            <div className="nav-item-izq">
-              <span>🏠</span>
-              <span>Dashboard</span>
-            </div>
+            <span>Dashboard</span>
           </NavLink>
 
-          <div className="nav-item" style={{ opacity: 0.6, cursor: "not-allowed" }}>
-            <div className="nav-item-izq">
-              <span>💰</span>
-              <span>Finanzas</span>
-            </div>
+          <div className="nav-item deshabilitado">
+            <span>Finanzas</span>
             <span className="nav-badge-proximo">Fase 4</span>
           </div>
 
-          <div className="nav-item" style={{ opacity: 0.6, cursor: "not-allowed" }}>
-            <div className="nav-item-izq">
-              <span>📋</span>
-              <span>Tareas</span>
-            </div>
+          <div className="nav-item deshabilitado">
+            <span>Tareas</span>
             <span className="nav-badge-proximo">Fase 5</span>
           </div>
 
-          <div className="nav-item" style={{ opacity: 0.6, cursor: "not-allowed" }}>
-            <div className="nav-item-izq">
-              <span>🎯</span>
-              <span>Metas</span>
-            </div>
+          <div className="nav-item deshabilitado">
+            <span>Metas</span>
             <span className="nav-badge-proximo">Fase 6</span>
           </div>
 
-          <div className="nav-item" style={{ opacity: 0.6, cursor: "not-allowed" }}>
-            <div className="nav-item-izq">
-              <span>📅</span>
-              <span>Calendario</span>
-            </div>
+          <div className="nav-item deshabilitado">
+            <span>Calendario</span>
             <span className="nav-badge-proximo">Fase 7</span>
           </div>
 
-          <div className="nav-item" style={{ opacity: 0.6, cursor: "not-allowed" }}>
-            <div className="nav-item-izq">
-              <span>🔔</span>
-              <span>Notificaciones</span>
-            </div>
+          <div className="nav-item deshabilitado">
+            <span>Notificaciones</span>
             <span className="nav-badge-proximo">Fase 8</span>
           </div>
 
-          <div className="nav-item" style={{ opacity: 0.6, cursor: "not-allowed" }}>
-            <div className="nav-item-izq">
-              <span>👤</span>
-              <span>Perfil</span>
-            </div>
+          <div className="nav-item deshabilitado">
+            <span>Perfil</span>
             <span className="nav-badge-proximo">Fase 9</span>
           </div>
         </nav>
@@ -123,7 +103,7 @@ export const Layout: React.FC = () => {
             className="btn-secundario btn-logout"
             onClick={handleLogout}
           >
-            🚪 Cerrar Sesión
+            Cerrar Sesión
           </button>
         </div>
       </aside>
