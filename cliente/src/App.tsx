@@ -1,80 +1,70 @@
-import { useState } from "react";
-import "./App.css";
+import React from "react";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { AuthProvider, useAuth } from "./context/AuthContext";
+import { RutaProtegida } from "./modulos/auth/componentes/RutaProtegida";
+import { LoginPagina } from "./modulos/auth/paginas/LoginPagina";
+import { RegistroPagina } from "./modulos/auth/paginas/RegistroPagina";
+import { Layout } from "./componentes/Layout";
+import { DashboardInicio } from "./paginas/DashboardInicio";
 
-type RespuestaSalud = {
-  ok: boolean;
-  servicio?: string;
-  fase?: number;
-  baseDatos?: {
-    estado: string;
-    nombre?: string;
-    hora?: string;
-    mensaje?: string;
-  };
-};
+/**
+ * Componente para rutas públicas (login/registro):
+ * Si el usuario ya está autenticado, lo redirige directamente al panel principal.
+ */
+const RutaPublica: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const { estaAutenticado, cargando } = useAuth();
 
-const urlApi = import.meta.env.VITE_API_URL ?? "http://localhost:4000";
-
-function App() {
-  const [cargando, setCargando] = useState(false);
-  const [resultado, setResultado] = useState<RespuestaSalud | null>(null);
-  const [errorRed, setErrorRed] = useState("");
-
-  async function comprobarConexion() {
-    setCargando(true);
-    setErrorRed("");
-    setResultado(null);
-
-    try {
-      const respuesta = await fetch(`${urlApi}/api/salud`);
-      const datos = (await respuesta.json()) as RespuestaSalud;
-      setResultado(datos);
-    } catch {
-      setErrorRed("No se pudo contactar con el servidor. ¿Está en marcha en el puerto 4000?");
-    } finally {
-      setCargando(false);
-    }
+  if (cargando) {
+    return null;
   }
 
+  if (estaAutenticado) {
+    return <Navigate to="/" replace />;
+  }
+
+  return <>{children}</>;
+};
+
+function RutasApp() {
   return (
-    <main className="pantalla">
-      <section className="contenido">
-        <h1 className="titulo">MiPanel</h1>
-        <p className="subtitulo">Fase 1 — Configuración del entorno</p>
+    <Routes>
+      {/* Rutas Públicas (Autenticación) */}
+      <Route
+        path="/login"
+        element={
+          <RutaPublica>
+            <LoginPagina />
+          </RutaPublica>
+        }
+      />
+      <Route
+        path="/registro"
+        element={
+          <RutaPublica>
+            <RegistroPagina />
+          </RutaPublica>
+        }
+      />
 
-        <article className="tarjeta">
-          <p>Esta pantalla solo comprueba que el cliente React, la API y PostgreSQL se comunican.</p>
-          <button type="button" onClick={comprobarConexion} disabled={cargando}>
-            {cargando ? "Comprobando…" : "Comprobar API y base de datos"}
-          </button>
+      {/* Rutas Privadas / Protegidas */}
+      <Route element={<RutaProtegida />}>
+        <Route element={<Layout />}>
+          <Route path="/" element={<DashboardInicio />} />
+        </Route>
+      </Route>
 
-          {errorRed ? <p className="estado error">{errorRed}</p> : null}
-
-          {resultado ? (
-            <div className="estado">
-              <p className={resultado.ok ? "ok" : "error"}>
-                {resultado.ok ? "Conexión correcta" : "El servidor respondió con error"}
-              </p>
-              <p className="detalle">Servicio: {resultado.servicio ?? "desconocido"}</p>
-              <p className="detalle">PostgreSQL: {resultado.baseDatos?.estado ?? "sin datos"}</p>
-              {resultado.baseDatos?.nombre ? (
-                <p className="detalle">Base: {resultado.baseDatos.nombre}</p>
-              ) : null}
-              {resultado.baseDatos?.mensaje ? (
-                <p className="detalle">{resultado.baseDatos.mensaje}</p>
-              ) : null}
-            </div>
-          ) : null}
-
-          <ul className="lista">
-            <li>Cliente: React + TypeScript + Vite</li>
-            <li>API: {urlApi}</li>
-            <li>Siguiente paso: autenticación (Fase 2)</li>
-          </ul>
-        </article>
-      </section>
-    </main>
+      {/* Redirección por defecto */}
+      <Route path="*" element={<Navigate to="/" replace />} />
+    </Routes>
   );
 }
 
-export default App;
+export default function App() {
+  return (
+    <BrowserRouter>
+      <AuthProvider>
+        <RutasApp />
+      </AuthProvider>
+    </BrowserRouter>
+  );
+}

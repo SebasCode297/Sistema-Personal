@@ -4,6 +4,8 @@ const express = require("express");
 const cors = require("cors");
 const { verificarConexion } = require("./db");
 
+const rutasAuth = require("./modulos/auth/rutas");
+
 const app = express();
 const puerto = Number(process.env.PORT || 4000);
 const origenCliente = process.env.FRONTEND_URL || "http://localhost:5173";
@@ -14,6 +16,9 @@ app.use(
   })
 );
 app.use(express.json());
+
+// Módulo de Autenticación (Fase 2)
+app.use("/api/auth", rutasAuth);
 
 app.get("/api/salud", async (_req, res) => {
   try {
