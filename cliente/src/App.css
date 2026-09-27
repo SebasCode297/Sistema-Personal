@@ -1,0 +1,59 @@
+.pantalla {
+  min-height: 100vh;
+  padding: 1.25rem;
+}
+
+.contenido {
+  width: min(100%, 36rem);
+  margin: 0 auto;
+}
+
+.titulo {
+  margin: 0 0 0.35rem;
+  font-size: clamp(1.6rem, 5vw, 2.2rem);
+}
+
+.subtitulo {
+  margin: 0 0 1.25rem;
+  color: #4b5d69;
+}
+
+.tarjeta {
+  background: #fff;
+  border-radius: 16px;
+  padding: 1.1rem 1.15rem;
+  box-shadow: 0 8px 24px rgba(18, 32, 43, 0.08);
+}
+
+.lista {
+  margin: 1rem 0 0;
+  padding-left: 1.1rem;
+}
+
+.ok {
+  color: #157347;
+  font-weight: 700;
+}
+
+.error {
+  color: #b42318;
+  font-weight: 700;
+}
+
+.estado {
+  margin: 0.85rem 0;
+}
+
+.detalle {
+  margin: 0;
+  color: #4b5d69;
+  word-break: break-word;
+}
+
+@media (min-width: 768px) {
+  .pantalla {
+    padding: 2.5rem;
+    display: grid;
+    place-items: center;
+  }
+}
