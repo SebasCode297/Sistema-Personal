@@ -9,6 +9,7 @@ const rutasFinanzas = require("./modulos/finanzas/rutas");
 const rutasTareas = require("./modulos/tareas/rutas");
 const rutasMetas = require("./modulos/metas/rutas");
 const rutasCalendario = require("./modulos/calendario/rutas");
+const rutasNotificaciones = require("./modulos/notificaciones/rutas");
 
 const app = express();
 const puerto = Number(process.env.PORT || 4000);
@@ -35,6 +36,9 @@ app.use("/api/metas", rutasMetas);
 
 // Módulo de Calendario (Fase 7)
 app.use("/api/calendario", rutasCalendario);
+
+// Módulo de Notificaciones (Fase 8)
+app.use("/api/notificaciones", rutasNotificaciones);
 
 app.get("/api/salud", async (_req, res) => {
   try {

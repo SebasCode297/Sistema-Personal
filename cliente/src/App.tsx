@@ -10,6 +10,7 @@ import { FinanzasPagina } from "./modulos/finanzas/paginas/FinanzasPagina";
 import { TareasPagina } from "./modulos/tareas/paginas/TareasPagina";
 import { MetasPagina } from "./modulos/metas/paginas/MetasPagina";
 import { CalendarioPagina } from "./modulos/calendario/paginas/CalendarioPagina";
+import { NotificacionesPagina } from "./modulos/notificaciones/paginas/NotificacionesPagina";
 
 /**
  * Componente para rutas públicas (login/registro):
@@ -58,6 +59,7 @@ function RutasApp() {
           <Route path="/tareas" element={<TareasPagina />} />
           <Route path="/metas" element={<MetasPagina />} />
           <Route path="/calendario" element={<CalendarioPagina />} />
+          <Route path="/notificaciones" element={<NotificacionesPagina />} />
         </Route>
       </Route>
 

@@ -44,7 +44,7 @@ export const DashboardPagina: React.FC = () => {
         <ResumenTareas />
         <ResumenMetas />
         <ResumenCalendario />
-        <ResumenNotificaciones noLeidas={0} />
+        <ResumenNotificaciones />
       </section>
 
       {/* Sección Informativa y Estado de los Módulos */}
@@ -130,6 +130,16 @@ export const DashboardPagina: React.FC = () => {
                   <span className="item-modulo-nombre">8. Notificaciones y Alertas</span>
                   <p style={{ fontSize: "0.8rem", color: "var(--texto-muted)", marginTop: "2px" }}>
                     Alertas internas, avisos de vencimiento y avisos del sistema.
+                  </p>
+                </div>
+                <span className="item-modulo-estado listo">Completado</span>
+              </li>
+
+              <li className="item-modulo-independiente">
+                <div>
+                  <span className="item-modulo-nombre">9. Perfil y Ajustes Personales</span>
+                  <p style={{ fontSize: "0.8rem", color: "var(--texto-muted)", marginTop: "2px" }}>
+                    Gestión de datos de cuenta, seguridad y cambio de contraseña.
                   </p>
                 </div>
                 <span className="item-modulo-estado siguiente">Siguiente Fase</span>

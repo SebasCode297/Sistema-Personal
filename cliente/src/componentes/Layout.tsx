@@ -90,10 +90,13 @@ export const Layout: React.FC = () => {
             <span>Calendario</span>
           </NavLink>
 
-          <div className="nav-item deshabilitado">
+          <NavLink
+            to="/notificaciones"
+            className={({ isActive }) => `nav-item ${isActive ? "activo" : ""}`}
+            onClick={cerrarMenu}
+          >
             <span>Notificaciones</span>
-            <span className="nav-badge-proximo">Fase 8</span>
-          </div>
+          </NavLink>
 
           <div className="nav-item deshabilitado">
             <span>Perfil</span>
