@@ -8,6 +8,7 @@ const rutasAuth = require("./modulos/auth/rutas");
 const rutasFinanzas = require("./modulos/finanzas/rutas");
 const rutasTareas = require("./modulos/tareas/rutas");
 const rutasMetas = require("./modulos/metas/rutas");
+const rutasCalendario = require("./modulos/calendario/rutas");
 
 const app = express();
 const puerto = Number(process.env.PORT || 4000);
@@ -31,6 +32,9 @@ app.use("/api/tareas", rutasTareas);
 
 // Módulo de Metas (Fase 6)
 app.use("/api/metas", rutasMetas);
+
+// Módulo de Calendario (Fase 7)
+app.use("/api/calendario", rutasCalendario);
 
 app.get("/api/salud", async (_req, res) => {
   try {

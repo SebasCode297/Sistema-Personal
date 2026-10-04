@@ -43,7 +43,7 @@ export const DashboardPagina: React.FC = () => {
         <ResumenFinanzas />
         <ResumenTareas />
         <ResumenMetas />
-        <ResumenCalendario eventosProximos={0} />
+        <ResumenCalendario />
         <ResumenNotificaciones noLeidas={0} />
       </section>
 
@@ -112,7 +112,7 @@ export const DashboardPagina: React.FC = () => {
                     Objetivos personales, progreso porcentual y valores.
                   </p>
                 </div>
-                  <span className="item-modulo-estado siguiente">Siguiente Fase</span>
+                <span className="item-modulo-estado listo">Completado</span>
               </li>
 
               <li className="item-modulo-independiente">
@@ -122,7 +122,17 @@ export const DashboardPagina: React.FC = () => {
                     Citas, reuniones, fechas y horas individuales.
                   </p>
                 </div>
-                <span className="item-modulo-estado pendiente">Pendiente</span>
+                <span className="item-modulo-estado listo">Completado</span>
+              </li>
+
+              <li className="item-modulo-independiente">
+                <div>
+                  <span className="item-modulo-nombre">8. Notificaciones y Alertas</span>
+                  <p style={{ fontSize: "0.8rem", color: "var(--texto-muted)", marginTop: "2px" }}>
+                    Alertas internas, avisos de vencimiento y avisos del sistema.
+                  </p>
+                </div>
+                <span className="item-modulo-estado siguiente">Siguiente Fase</span>
               </li>
             </ul>
           </div>

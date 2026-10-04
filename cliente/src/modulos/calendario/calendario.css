@@ -1,0 +1,489 @@
+/* ==============================================================================
+   Módulo Calendario - Estilos Visuales (Sin Iconos ni Emojis)
+   ============================================================================== */
+
+.calendario-pagina {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.calendario-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.calendario-titulo-area h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 0.25rem 0;
+}
+
+.calendario-titulo-area p {
+  color: #64748b;
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.calendario-acciones-top {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.btn-crear-evento {
+  background-color: #2563eb;
+  color: #ffffff;
+  border: none;
+  padding: 0.65rem 1.25rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-crear-evento:hover {
+  background-color: #1d4ed8;
+}
+
+/* Filtros y navegación */
+.calendario-filtros-barra {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  background-color: #ffffff;
+  padding: 0.85rem 1.25rem;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+}
+
+.calendario-filtro-categorias {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.btn-filtro-cat {
+  background: none;
+  border: 1px solid #cbd5e1;
+  color: #475569;
+  padding: 0.35rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-filtro-cat:hover {
+  background-color: #f1f5f9;
+  border-color: #94a3b8;
+}
+
+.btn-filtro-cat.activo {
+  background-color: #0f172a;
+  color: #ffffff;
+  border-color: #0f172a;
+  font-weight: 600;
+}
+
+.calendario-vista-toggle {
+  display: flex;
+  gap: 0.25rem;
+  background-color: #f1f5f9;
+  padding: 0.25rem;
+  border-radius: 6px;
+}
+
+.btn-vista-toggle {
+  border: none;
+  background: none;
+  padding: 0.35rem 0.85rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  color: #475569;
+  transition: all 0.2s;
+}
+
+.btn-vista-toggle.activo {
+  background-color: #ffffff;
+  color: #0f172a;
+  font-weight: 600;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+/* Agenda / Lista de eventos */
+.calendario-contenedor-principal {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+.eventos-lista-vacia {
+  background-color: #ffffff;
+  padding: 3rem 1.5rem;
+  text-align: center;
+  border-radius: 8px;
+  border: 1px dashed #cbd5e1;
+  color: #64748b;
+}
+
+.eventos-lista-vacia p {
+  margin: 0.5rem 0 1rem 0;
+}
+
+.eventos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1rem;
+}
+
+.evento-tarjeta {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  transition: transform 0.15s, box-shadow 0.15s;
+  border-left: 4px solid #94a3b8;
+}
+
+.evento-tarjeta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.08);
+}
+
+.evento-tarjeta.cat-importante {
+  border-left-color: #ef4444;
+}
+
+.evento-tarjeta.cat-trabajo {
+  border-left-color: #2563eb;
+}
+
+.evento-tarjeta.cat-personal {
+  border-left-color: #10b981;
+}
+
+.evento-tarjeta.cat-general {
+  border-left-color: #64748b;
+}
+
+.evento-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.evento-titulo {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #0f172a;
+  margin: 0;
+  word-break: break-word;
+}
+
+.badge-cat {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-weight: 700;
+}
+
+.badge-cat.cat-importante {
+  background-color: #fee2e2;
+  color: #b91c1c;
+}
+
+.badge-cat.cat-trabajo {
+  background-color: #dbeafe;
+  color: #1d4ed8;
+}
+
+.badge-cat.cat-personal {
+  background-color: #d1fae5;
+  color: #047857;
+}
+
+.badge-cat.cat-general {
+  background-color: #f1f5f9;
+  color: #475569;
+}
+
+.evento-detalles {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.evento-dato-fila {
+  display: flex;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+}
+
+.evento-etiqueta-txt {
+  color: #64748b;
+  font-weight: 600;
+  min-width: 65px;
+}
+
+.evento-valor-txt {
+  color: #1e293b;
+  word-break: break-word;
+}
+
+.evento-descripcion {
+  font-size: 0.875rem;
+  color: #475569;
+  background-color: #f8fafc;
+  padding: 0.65rem;
+  border-radius: 4px;
+  margin-top: 0.25rem;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.evento-acciones-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid #f1f5f9;
+}
+
+.btn-accion-evento {
+  background: none;
+  border: 1px solid #e2e8f0;
+  padding: 0.35rem 0.65rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  color: #475569;
+  transition: all 0.15s;
+}
+
+.btn-accion-evento:hover {
+  background-color: #f8fafc;
+  color: #0f172a;
+}
+
+.btn-accion-evento.btn-eliminar {
+  color: #dc2626;
+  border-color: #fecaca;
+}
+
+.btn-accion-evento.btn-eliminar:hover {
+  background-color: #fee2e2;
+  border-color: #fca5a5;
+}
+
+/* Modal Formulario Evento */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(15, 23, 42, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  z-index: 1000;
+  backdrop-filter: blur(2px);
+}
+
+.modal-contenedor {
+  background-color: #ffffff;
+  width: 100%;
+  max-width: 520px;
+  max-height: 90vh;
+  overflow-y: auto;
+  border-radius: 10px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
+  padding: 1.5rem;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.modal-header h2 {
+  font-size: 1.25rem;
+  color: #0f172a;
+  margin: 0;
+  font-weight: 700;
+}
+
+.btn-cerrar-modal {
+  background: none;
+  border: 1px solid #cbd5e1;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  color: #64748b;
+}
+
+.btn-cerrar-modal:hover {
+  background-color: #f1f5f9;
+  color: #0f172a;
+}
+
+.form-grupo {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.form-grupo label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #334155;
+}
+
+.form-grupo input,
+.form-grupo select,
+.form-grupo textarea {
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  padding: 0.6rem 0.75rem;
+  font-size: 0.9rem;
+  color: #0f172a;
+  outline: none;
+  transition: border-color 0.2s;
+  font-family: inherit;
+}
+
+.form-grupo input:focus,
+.form-grupo select:focus,
+.form-grupo textarea:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
+}
+
+.form-fila-doble {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.form-checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  font-size: 0.875rem;
+  color: #334155;
+  margin-top: 0.25rem;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+  border-top: 1px solid #e2e8f0;
+  padding-top: 1rem;
+}
+
+.btn-secundario {
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
+  color: #475569;
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+
+.btn-secundario:hover {
+  background-color: #f8fafc;
+  color: #0f172a;
+}
+
+.btn-primario {
+  background-color: #2563eb;
+  border: 1px solid #2563eb;
+  color: #ffffff;
+  padding: 0.6rem 1.25rem;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+
+.btn-primario:hover {
+  background-color: #1d4ed8;
+}
+
+.form-alerta-error {
+  background-color: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #b91c1c;
+  padding: 0.65rem 0.85rem;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  margin-bottom: 1rem;
+}
+
+/* Responsividad */
+@media (max-width: 640px) {
+  .calendario-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .calendario-acciones-top {
+    width: 100%;
+  }
+
+  .btn-crear-evento {
+    width: 100%;
+    text-align: center;
+  }
+
+  .form-fila-doble {
+    grid-template-columns: 1fr;
+  }
+
+  .calendario-filtros-barra {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .calendario-filtro-categorias {
+    overflow-x: auto;
+    padding-bottom: 0.25rem;
+  }
+
+  .eventos-grid {
+    grid-template-columns: 1fr;
+  }
+}
