@@ -6,6 +6,8 @@ import { LoginPagina } from "./modulos/auth/paginas/LoginPagina";
 import { RegistroPagina } from "./modulos/auth/paginas/RegistroPagina";
 import { Layout } from "./componentes/Layout";
 import { DashboardPagina } from "./modulos/dashboard/paginas/DashboardPagina";
+import { FinanzasPagina } from "./modulos/finanzas/paginas/FinanzasPagina";
+import { TareasPagina } from "./modulos/tareas/paginas/TareasPagina";
 
 /**
  * Componente para rutas públicas (login/registro):
@@ -50,6 +52,8 @@ function RutasApp() {
       <Route element={<RutaProtegida />}>
         <Route element={<Layout />}>
           <Route path="/" element={<DashboardPagina />} />
+          <Route path="/finanzas" element={<FinanzasPagina />} />
+          <Route path="/tareas" element={<TareasPagina />} />
         </Route>
       </Route>
 

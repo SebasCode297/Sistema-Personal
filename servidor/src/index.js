@@ -5,6 +5,8 @@ const cors = require("cors");
 const { verificarConexion } = require("./db");
 
 const rutasAuth = require("./modulos/auth/rutas");
+const rutasFinanzas = require("./modulos/finanzas/rutas");
+const rutasTareas = require("./modulos/tareas/rutas");
 
 const app = express();
 const puerto = Number(process.env.PORT || 4000);
@@ -19,6 +21,12 @@ app.use(express.json());
 
 // Módulo de Autenticación (Fase 2)
 app.use("/api/auth", rutasAuth);
+
+// Módulo de Finanzas (Fase 4)
+app.use("/api/finanzas", rutasFinanzas);
+
+// Módulo de Tareas (Fase 5)
+app.use("/api/tareas", rutasTareas);
 
 app.get("/api/salud", async (_req, res) => {
   try {

@@ -40,8 +40,8 @@ export const DashboardPagina: React.FC = () => {
 
       {/* Cuadrícula de Métricas Resumidas */}
       <section className="dashboard-grid-metricas" aria-label="Resumen de módulos">
-        <ResumenFinanzas balance={0} />
-        <ResumenTareas pendientes={0} />
+        <ResumenFinanzas />
+        <ResumenTareas />
         <ResumenMetas activas={0} />
         <ResumenCalendario eventosProximos={0} />
         <ResumenNotificaciones noLeidas={0} />
@@ -89,10 +89,10 @@ export const DashboardPagina: React.FC = () => {
                 <div>
                   <span className="item-modulo-nombre">4. Finanzas Personales</span>
                   <p style={{ fontSize: "0.8rem", color: "var(--texto-muted)", marginTop: "2px" }}>
-                    Ingresos, gastos, categorías y balances independientes.
+                    Ingresos, gastos, categorías, balance y estadísticas.
                   </p>
                 </div>
-                <span className="item-modulo-estado siguiente">Siguiente Fase</span>
+                <span className="item-modulo-estado listo">Completado</span>
               </li>
 
               <li className="item-modulo-independiente">
@@ -102,7 +102,7 @@ export const DashboardPagina: React.FC = () => {
                     CRUD de tareas, estados, prioridades y fechas límite.
                   </p>
                 </div>
-                <span className="item-modulo-estado pendiente">Pendiente</span>
+                <span className="item-modulo-estado listo">Completado</span>
               </li>
 
               <li className="item-modulo-independiente">
@@ -112,7 +112,7 @@ export const DashboardPagina: React.FC = () => {
                     Objetivos personales, progreso porcentual y valores.
                   </p>
                 </div>
-                <span className="item-modulo-estado pendiente">Pendiente</span>
+                  <span className="item-modulo-estado siguiente">Siguiente Fase</span>
               </li>
 
               <li className="item-modulo-independiente">

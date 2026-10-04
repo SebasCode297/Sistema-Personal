@@ -1,0 +1,151 @@
+.tareas-header {
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--borde-suave);
+  margin-bottom: 1.75rem;
+}
+
+.tareas-insignia {
+  display: inline-flex;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0.2rem 0.65rem;
+  border-radius: 999px;
+  background: rgba(59, 130, 246, 0.12);
+  color: #60a5fa;
+  border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+.tareas-titulo {
+  margin-top: 0.45rem;
+  font-size: 1.75rem;
+  font-weight: 800;
+}
+
+.tareas-subtitulo {
+  font-size: 0.92rem;
+  color: var(--texto-secundario);
+}
+
+.tareas-resumen-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.tareas-tarjeta-resumen {
+  background: var(--bg-tarjeta);
+  border: 1px solid var(--borde-suave);
+  border-radius: var(--radio-md);
+  padding: 1.3rem 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.tareas-cuerpo {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.tareas-panel-accion {
+  background: var(--bg-tarjeta);
+  border: 1px solid var(--borde-suave);
+  border-radius: var(--radio-md);
+  padding: 1.5rem;
+  position: sticky;
+  top: 1.5rem;
+}
+
+.tareas-panel-titulo {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--borde-suave);
+}
+
+.tareas-filtros {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.tareas-tabla-contenedor {
+  background: var(--bg-tarjeta);
+  border: 1px solid var(--borde-suave);
+  border-radius: var(--radio-md);
+  overflow: hidden;
+}
+
+.tareas-tabla {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tareas-tabla th,
+.tareas-tabla td {
+  padding: 0.9rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  vertical-align: top;
+}
+
+.tareas-tabla th {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--texto-muted);
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.tareas-descripcion {
+  margin-top: 0.25rem;
+  font-size: 0.82rem;
+  color: var(--texto-muted);
+}
+
+.badge-prioridad,
+.badge-estado {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+}
+
+.badge-prioridad.alta { background: rgba(239, 68, 68, 0.15); color: #f87171; }
+.badge-prioridad.media { background: rgba(245, 158, 11, 0.15); color: #fbbf24; }
+.badge-prioridad.baja { background: rgba(16, 185, 129, 0.15); color: #34d399; }
+
+.badge-estado.pendiente { background: rgba(156, 163, 175, 0.15); color: #d1d5db; }
+.badge-estado.en_progreso { background: rgba(59, 130, 246, 0.15); color: #60a5fa; }
+.badge-estado.completada { background: rgba(16, 185, 129, 0.15); color: #34d399; }
+
+.tareas-empty {
+  padding: 2.5rem 1rem;
+  text-align: center;
+  color: var(--texto-muted);
+}
+
+.tareas-formulario textarea.campo-input {
+  min-height: 88px;
+  resize: vertical;
+}
+
+@media (max-width: 1100px) {
+  .tareas-cuerpo { grid-template-columns: 1fr; }
+  .tareas-panel-accion { position: static; }
+}
+
+@media (max-width: 640px) {
+  .tareas-resumen-grid,
+  .tareas-filtros { grid-template-columns: 1fr; }
+
+  .tareas-tabla th:nth-child(4),
+  .tareas-tabla td:nth-child(4) { display: none; }
+}

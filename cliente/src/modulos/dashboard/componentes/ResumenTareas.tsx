@@ -1,23 +1,37 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { TarjetaMetrica } from "./TarjetaMetrica";
+import { tareasServicio } from "../../tareas/servicios/tareasServicio";
 
-interface ResumenTareasProps {
-  pendientes?: number;
-  enProgreso?: number;
-}
+export const ResumenTareas: React.FC = () => {
+  const navigate = useNavigate();
+  const [pendientes, setPendientes] = useState(0);
+  const [cargando, setCargando] = useState(true);
 
-export const ResumenTareas: React.FC<ResumenTareasProps> = ({
-  pendientes = 0,
-}) => {
+  useEffect(() => {
+    async function cargar() {
+      try {
+        const respuesta = await tareasServicio.resumen();
+        setPendientes(respuesta.ok ? Number(respuesta.resumen.pendientes) : 0);
+      } catch {
+        setPendientes(0);
+      } finally {
+        setCargando(false);
+      }
+    }
+    cargar();
+  }, []);
+
   return (
     <TarjetaMetrica
       etiqueta="Tareas"
-      valor={`${pendientes} pendientes`}
+      valor={cargando ? "Cargando..." : `${pendientes} pendientes`}
       subtexto="Actividades por completar"
-      badgeTexto="Fase 5"
-      badgeTipo="normal"
-      textoEstado="Módulo en preparación"
+      badgeTexto="Módulo activo"
+      badgeTipo="positivo"
+      textoEstado="Independiente de Finanzas y Metas"
       enlaceTexto="Ver tareas"
+      onClickEnlace={() => navigate("/tareas")}
     />
   );
 };
