@@ -1,5 +1,5 @@
 /* ==============================================================================
-   Módulo Notificaciones - Estilos Visuales (Sin Iconos ni Emojis)
+   Módulo Notificaciones — Estilos Visuales (Inspirado en ISTER ister.edu.ec)
    ============================================================================== */
 
 .notificaciones-pagina {
@@ -21,13 +21,13 @@
 
 .notificaciones-titulo-area h1 {
   font-size: 1.75rem;
-  font-weight: 700;
-  color: #0f172a;
+  font-weight: 800;
+  color: var(--texto-principal);
   margin: 0 0 0.25rem 0;
 }
 
 .notificaciones-titulo-area p {
-  color: #64748b;
+  color: var(--texto-secundario);
   margin: 0;
   font-size: 0.95rem;
 }
@@ -39,31 +39,34 @@
 }
 
 .btn-accion-top {
-  border: 1px solid #cbd5e1;
+  border: 1px solid var(--borde-medio);
   background-color: #ffffff;
-  color: #334155;
+  color: var(--texto-principal);
   padding: 0.55rem 0.95rem;
-  border-radius: 6px;
+  border-radius: var(--radio-sm);
   font-size: 0.85rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.15s;
+  transition: var(--transicion);
+  box-shadow: var(--sombra-sm);
 }
 
 .btn-accion-top:hover {
-  background-color: #f8fafc;
-  color: #0f172a;
-  border-color: #94a3b8;
+  background-color: #F8FAFC;
+  color: var(--color-primario);
+  border-color: var(--color-primario);
 }
 
 .btn-accion-top.primario {
-  background-color: #2563eb;
-  border-color: #2563eb;
+  background-color: var(--color-acento);
+  border-color: var(--color-acento);
   color: #ffffff;
+  box-shadow: 0 2px 8px var(--color-acento-glow);
 }
 
 .btn-accion-top.primario:hover {
-  background-color: #1d4ed8;
+  background-color: var(--color-acento-hover);
+  transform: translateY(-1px);
 }
 
 /* Filtros */
@@ -72,11 +75,12 @@
   justify-content: space-between;
   align-items: center;
   background-color: #ffffff;
-  padding: 0.75rem 1.25rem;
-  border-radius: 8px;
-  border: 1px solid #e2e8f0;
+  padding: 0.85rem 1.25rem;
+  border-radius: var(--radio-md);
+  border: 1px solid var(--borde-suave);
   flex-wrap: wrap;
   gap: 0.75rem;
+  box-shadow: var(--sombra-tarjeta);
 }
 
 .notificaciones-pills {
@@ -86,62 +90,70 @@
 
 .btn-filtro-pill {
   background: none;
-  border: 1px solid #e2e8f0;
-  padding: 0.35rem 0.75rem;
-  border-radius: 20px;
+  border: 1px solid var(--borde-medio);
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radio-full);
   font-size: 0.85rem;
   cursor: pointer;
-  color: #475569;
-  transition: all 0.15s;
+  color: var(--texto-secundario);
+  font-weight: 600;
+  transition: var(--transicion);
+}
+
+.btn-filtro-pill:hover {
+  background-color: #F8FAFC;
+  color: var(--color-primario);
+  border-color: var(--color-primario);
 }
 
 .btn-filtro-pill.activo {
-  background-color: #0f172a;
+  background-color: var(--color-primario);
   color: #ffffff;
-  border-color: #0f172a;
-  font-weight: 600;
+  border-color: var(--color-primario);
 }
 
 .notificaciones-stats-txt {
   font-size: 0.875rem;
-  color: #64748b;
+  color: var(--texto-muted);
+  font-weight: 500;
 }
 
 /* Lista */
 .notificaciones-lista {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 0.85rem;
 }
 
 .notificacion-item {
   background-color: #ffffff;
-  border: 1px solid #e2e8f0;
-  border-radius: 8px;
-  padding: 1.15rem 1.25rem;
+  border: 1px solid var(--borde-suave);
+  border-radius: var(--radio-md);
+  padding: 1.25rem;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   gap: 1rem;
-  transition: all 0.15s;
-  border-left: 4px solid #cbd5e1;
+  transition: var(--transicion);
+  box-shadow: var(--sombra-tarjeta);
+  border-left: 4px solid var(--borde-medio);
 }
 
 .notificacion-item.no-leida {
-  border-left-color: #2563eb;
-  background-color: #f8fafc;
+  border-left-color: var(--color-acento);
+  background-color: #FFFDF9;
 }
 
 .notificacion-item.tipo-alerta {
-  border-left-color: #ef4444;
+  border-left-color: var(--color-error);
 }
 
 .notificacion-item.tipo-recordatorio {
-  border-left-color: #f59e0b;
+  border-left-color: var(--color-acento);
 }
 
 .notificacion-item.tipo-sistema {
-  border-left-color: #6366f1;
+  border-left-color: var(--color-primario);
 }
 
 .notificacion-cuerpo {
@@ -164,39 +176,43 @@
   text-transform: uppercase;
   letter-spacing: 0.05em;
   padding: 0.15rem 0.45rem;
-  border-radius: 3px;
+  border-radius: var(--radio-sm);
 }
 
 .badge-tipo.info {
-  background-color: #e0f2fe;
-  color: #0369a1;
+  background-color: var(--color-primario-suave);
+  color: var(--color-primario);
+  border: 1px solid #C7D2FE;
 }
 
 .badge-tipo.alerta {
-  background-color: #fee2e2;
-  color: #b91c1c;
+  background-color: var(--color-error-bg);
+  color: var(--color-error);
+  border: 1px solid var(--color-error-borde);
 }
 
 .badge-tipo.recordatorio {
-  background-color: #fef3c7;
-  color: #b45309;
+  background-color: var(--color-acento-suave);
+  color: var(--color-acento);
+  border: 1px solid #FED7AA;
 }
 
 .badge-tipo.sistema {
-  background-color: #ede9fe;
-  color: #5b21b6;
+  background-color: #F1F5F9;
+  color: #334155;
+  border: 1px solid var(--borde-suave);
 }
 
 .notificacion-titulo {
   font-size: 1rem;
-  font-weight: 600;
-  color: #0f172a;
+  font-weight: 700;
+  color: var(--texto-principal);
   margin: 0;
 }
 
 .notificacion-mensaje {
   font-size: 0.9rem;
-  color: #334155;
+  color: var(--texto-secundario);
   margin: 0;
   line-height: 1.5;
   white-space: pre-wrap;
@@ -207,15 +223,19 @@
   align-items: center;
   gap: 0.85rem;
   font-size: 0.8rem;
-  color: #64748b;
+  color: var(--texto-muted);
   margin-top: 0.25rem;
 }
 
 .notificacion-enlace {
-  color: #2563eb;
+  color: var(--color-primario);
   text-decoration: underline;
   cursor: pointer;
-  font-weight: 500;
+  font-weight: 600;
+}
+
+.notificacion-enlace:hover {
+  color: var(--color-acento);
 }
 
 .notificacion-acciones {
@@ -228,37 +248,40 @@
 
 .btn-accion-noti {
   background: none;
-  border: 1px solid #e2e8f0;
-  font-size: 0.75rem;
-  padding: 0.25rem 0.5rem;
-  border-radius: 4px;
-  color: #475569;
+  border: 1px solid var(--borde-medio);
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 0.25rem 0.55rem;
+  border-radius: var(--radio-sm);
+  color: var(--texto-secundario);
   cursor: pointer;
-  transition: all 0.15s;
+  transition: var(--transicion);
   white-space: nowrap;
 }
 
 .btn-accion-noti:hover {
-  background-color: #f1f5f9;
-  color: #0f172a;
+  background-color: #F8FAFC;
+  color: var(--color-primario);
+  border-color: var(--color-primario);
 }
 
 .btn-accion-noti.btn-eliminar-noti {
-  color: #dc2626;
-  border-color: #fecaca;
+  color: var(--color-error);
+  border-color: var(--color-error-borde);
 }
 
 .btn-accion-noti.btn-eliminar-noti:hover {
-  background-color: #fee2e2;
+  background-color: var(--color-error-bg);
 }
 
 .notificaciones-vacio {
   background-color: #ffffff;
-  border: 1px dashed #cbd5e1;
+  border: 1px dashed var(--borde-medio);
   padding: 3rem 1.5rem;
-  border-radius: 8px;
+  border-radius: var(--radio-md);
   text-align: center;
-  color: #64748b;
+  color: var(--texto-muted);
+  box-shadow: var(--sombra-sm);
 }
 
 /* Modal Alerta Personal */
@@ -268,22 +291,22 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(15, 23, 42, 0.6);
+  background-color: rgba(13, 24, 66, 0.65);
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 1rem;
   z-index: 1000;
-  backdrop-filter: blur(2px);
+  backdrop-filter: blur(3px);
 }
 
 .modal-contenedor-noti {
   background-color: #ffffff;
   width: 100%;
   max-width: 480px;
-  border-radius: 10px;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
-  padding: 1.5rem;
+  border-radius: var(--radio-md);
+  box-shadow: var(--sombra-elevada);
+  padding: 1.75rem;
 }
 
 @media (max-width: 640px) {
@@ -310,7 +333,7 @@
     align-items: center;
     width: 100%;
     justify-content: flex-end;
-    border-top: 1px solid #f1f5f9;
+    border-top: 1px solid #F1F5F9;
     padding-top: 0.5rem;
   }
 }

@@ -1,29 +1,47 @@
+/* ==============================================================================
+   Módulo de Autenticación — Login y Registro (Estilo ISTER)
+   ============================================================================== */
+
 .auth-contenedor {
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 1.5rem;
+  background: linear-gradient(135deg, #0D1842 0%, #15245B 50%, #263889 100%);
+  position: relative;
+}
+
+.auth-contenedor::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 20% 20%, rgba(254, 146, 0, 0.12) 0%, transparent 40%),
+              radial-gradient(circle at 80% 80%, rgba(38, 56, 137, 0.25) 0%, transparent 50%);
+  pointer-events: none;
 }
 
 .auth-tarjeta {
   width: 100%;
   max-width: 440px;
-  background: var(--bg-tarjeta);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--borde-suave);
+  background: #FFFFFF;
   border-radius: var(--radio-lg);
-  box-shadow: var(--sombra-tarjeta);
-  padding: 2.5rem 2rem;
+  box-shadow: 0 25px 50px -12px rgba(13, 24, 66, 0.35);
+  padding: 2.75rem 2.25rem;
   text-align: center;
-  animation: fadeIn 0.3s ease-out;
+  position: relative;
+  z-index: 10;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  animation: fadeInAuth 0.3s ease-out;
 }
 
-@keyframes fadeIn {
+@keyframes fadeInAuth {
   from {
     opacity: 0;
-    transform: translateY(8px);
+    transform: translateY(12px);
   }
   to {
     opacity: 1;
@@ -39,25 +57,29 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 56px;
-  height: 56px;
-  background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(139, 92, 246, 0.2));
-  border: 1px solid rgba(59, 130, 246, 0.3);
+  width: 60px;
+  height: 60px;
+  background: var(--color-acento);
+  color: #ffffff;
   border-radius: var(--radio-md);
-  font-size: 1.8rem;
-  margin-bottom: 1rem;
+  font-size: 1.4rem;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  margin-bottom: 1.25rem;
+  box-shadow: 0 4px 14px var(--color-acento-glow);
 }
 
 .auth-titulo {
-  font-size: 1.6rem;
+  font-size: 1.65rem;
   font-weight: 800;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.02em;
+  color: #0F172A;
   margin-bottom: 0.35rem;
 }
 
 .auth-subtitulo {
   font-size: 0.92rem;
-  color: var(--texto-secundario);
+  color: #64748B;
 }
 
 .auth-formulario {
@@ -69,19 +91,35 @@
   width: 100%;
   margin-top: 0.5rem;
   margin-bottom: 1.5rem;
-  font-size: 1rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  min-height: 44px;
+  background-color: var(--color-acento);
+  color: #ffffff;
+  box-shadow: 0 4px 12px var(--color-acento-glow);
+}
+
+.auth-btn-submit:hover {
+  background-color: var(--color-acento-hover);
+  transform: translateY(-1px);
 }
 
 .auth-footer {
-  border-top: 1px solid var(--borde-suave);
+  border-top: 1px solid #E2E8F0;
   padding-top: 1.25rem;
   font-size: 0.9rem;
-  color: var(--texto-secundario);
+  color: #64748B;
 }
 
 .auth-footer a {
-  font-weight: 600;
+  color: var(--color-primario);
+  font-weight: 700;
   margin-left: 0.35rem;
+}
+
+.auth-footer a:hover {
+  color: var(--color-acento);
+  text-decoration: underline;
 }
 
 @media (max-width: 480px) {
@@ -90,6 +128,6 @@
   }
   
   .auth-tarjeta {
-    padding: 2rem 1.25rem;
+    padding: 2rem 1.5rem;
   }
 }

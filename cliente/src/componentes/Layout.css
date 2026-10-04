@@ -1,52 +1,60 @@
+/* ==============================================================================
+   Layout General — Sidebar y Estructura (Estilo Institucional ISTER)
+   ============================================================================== */
+
 .layout-contenedor {
   display: flex;
   min-height: 100vh;
   background-color: var(--bg-principal);
 }
 
-/* Sidebar */
+/* Sidebar Institucional Azul */
 .layout-sidebar {
   width: 260px;
-  background: var(--bg-secundario);
-  border-right: 1px solid var(--borde-suave);
+  background: var(--bg-sidebar);
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
   display: flex;
   flex-direction: column;
   transition: var(--transicion);
   z-index: 50;
+  box-shadow: 2px 0 10px rgba(13, 24, 66, 0.15);
 }
 
 .layout-brand {
   padding: 1.5rem 1.25rem;
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  border-bottom: 1px solid var(--borde-suave);
+  gap: 0.85rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(0, 0, 0, 0.15);
 }
 
 .layout-logo {
-  width: 34px;
-  height: 34px;
+  width: 38px;
+  height: 38px;
   border-radius: var(--radio-sm);
-  background: var(--color-primario);
+  background: var(--color-acento);
   color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 800;
-  font-size: 0.85rem;
+  font-weight: 900;
+  font-size: 0.95rem;
   letter-spacing: 0.05em;
+  box-shadow: 0 2px 8px var(--color-acento-glow);
+  flex-shrink: 0;
 }
 
 .layout-brand-nombre {
-  font-size: 1.2rem;
+  font-size: 1.25rem;
   font-weight: 800;
-  color: var(--texto-principal);
-  letter-spacing: -0.02em;
+  color: #ffffff;
+  letter-spacing: -0.01em;
 }
 
 .layout-nav {
   flex: 1;
-  padding: 1.25rem 0.75rem;
+  padding: 1.25rem 0.85rem;
   display: flex;
   flex-direction: column;
   gap: 0.35rem;
@@ -57,55 +65,56 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.7rem 0.9rem;
+  padding: 0.75rem 1rem;
   border-radius: var(--radio-sm);
-  color: var(--texto-secundario);
+  color: #CBD5E1;
   font-weight: 500;
   font-size: 0.92rem;
   transition: var(--transicion);
   text-decoration: none;
+  border-left: 3px solid transparent;
 }
 
 .nav-item:hover {
-  background: rgba(255, 255, 255, 0.05);
-  color: var(--texto-principal);
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
   text-decoration: none;
 }
 
 .nav-item.activo {
-  background: rgba(59, 130, 246, 0.15);
-  color: #60a5fa;
-  font-weight: 600;
-  border-left: 3px solid #3b82f6;
+  background: rgba(254, 146, 0, 0.14);
+  color: #ffffff;
+  font-weight: 700;
+  border-left-color: var(--color-acento);
 }
 
 .nav-item.deshabilitado {
-  opacity: 0.5;
+  opacity: 0.45;
   cursor: not-allowed;
 }
 
 .nav-item.deshabilitado:hover {
   background: transparent;
-  color: var(--texto-secundario);
+  color: #CBD5E1;
 }
 
 .nav-badge-proximo {
-  font-size: 0.68rem;
+  font-size: 0.7rem;
   padding: 0.15rem 0.45rem;
-  background: rgba(255, 255, 255, 0.07);
-  color: var(--texto-muted);
+  background: rgba(255, 255, 255, 0.1);
+  color: #94A3B8;
   border-radius: 999px;
   font-weight: 600;
 }
 
-/* Sidebar Footer (Usuario y Logout) */
+/* Footer del Sidebar */
 .layout-sidebar-footer {
-  padding: 1.25rem 1rem;
-  border-top: 1px solid var(--borde-suave);
+  padding: 1.15rem 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(0, 0, 0, 0.15);
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
-  background: rgba(0, 0, 0, 0.15);
+  gap: 0.85rem;
 }
 
 .usuario-info {
@@ -115,17 +124,18 @@
 }
 
 .usuario-avatar {
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  background: #2563eb;
-  color: #fff;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radio-full);
+  background: var(--color-acento);
+  color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 700;
+  font-weight: 800;
   font-size: 0.95rem;
   flex-shrink: 0;
+  box-shadow: 0 2px 6px var(--color-acento-glow);
 }
 
 .usuario-detalles {
@@ -136,16 +146,16 @@
 
 .usuario-nombre {
   font-size: 0.9rem;
-  font-weight: 600;
-  color: var(--texto-principal);
+  font-weight: 700;
+  color: #ffffff;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 .usuario-email {
-  font-size: 0.78rem;
-  color: var(--texto-muted);
+  font-size: 0.75rem;
+  color: #94A3B8;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -153,91 +163,116 @@
 
 .btn-logout {
   width: 100%;
-  font-size: 0.85rem;
-  padding: 0.5rem;
-  min-height: 38px;
+  min-height: 34px;
+  padding: 0.45rem 0.75rem;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #CBD5E1;
+  border-radius: var(--radio-sm);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transicion);
 }
 
-/* Main Content Area */
-.layout-principal {
+.btn-logout:hover {
+  background: rgba(220, 38, 38, 0.2);
+  border-color: rgba(220, 38, 38, 0.4);
+  color: #FCA5A5;
+}
+
+/* Área de Contenido Principal */
+.layout-contenido {
   flex: 1;
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
+  padding: 2rem;
   overflow-y: auto;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
 }
 
+/* Barra superior móvil */
 .layout-topbar-movil {
   display: none;
   align-items: center;
   justify-content: space-between;
   padding: 0.85rem 1.25rem;
-  background: var(--bg-secundario);
-  border-bottom: 1px solid var(--borde-suave);
+  background: var(--bg-sidebar);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .layout-topbar-brand {
   font-weight: 800;
+  color: #ffffff;
   font-size: 1.15rem;
-  color: var(--texto-principal);
 }
 
+/* Botón Hamburguesa con 3 líneas CSS puras */
 .btn-menu-hamburguesa {
-  background: transparent;
-  border: 1px solid var(--borde-suave);
-  padding: 0.5rem;
+  background: none;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  min-height: 36px;
+  width: 36px;
+  padding: 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   gap: 4px;
-  width: 38px;
-  height: 38px;
   border-radius: var(--radio-sm);
   cursor: pointer;
 }
 
+.btn-menu-hamburguesa:hover {
+  border-color: var(--color-acento);
+}
+
 .icono-linea {
   display: block;
-  width: 100%;
+  width: 18px;
   height: 2px;
-  background-color: var(--texto-principal);
+  background-color: #ffffff;
   border-radius: 2px;
-  transition: var(--transicion);
 }
 
-.layout-contenido {
-  flex: 1;
-  padding: 2rem;
-  max-width: 1280px;
-  width: 100%;
-  margin: 0 auto;
+/* Overlay móvil */
+.layout-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(13, 24, 66, 0.65);
+  backdrop-filter: blur(3px);
+  z-index: 40;
 }
 
-/* Responsive Móvil y Tablet */
-@media (max-width: 900px) {
-  .layout-sidebar {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: -280px;
-    width: 270px;
-    box-shadow: 10px 0 25px rgba(0, 0, 0, 0.6);
-  }
-
-  .layout-sidebar.abierto {
-    left: 0;
+/* Adaptación responsive para móviles */
+@media (max-width: 768px) {
+  .layout-contenedor {
+    flex-direction: column;
   }
 
   .layout-topbar-movil {
     display: flex;
+    position: sticky;
+    top: 0;
+    z-index: 30;
+  }
+
+  .layout-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    transform: translateX(-100%);
+    width: 280px;
+  }
+
+  .layout-sidebar.abierto {
+    transform: translateX(0);
   }
 
   .layout-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.65);
-    backdrop-filter: blur(4px);
-    z-index: 40;
+    display: block;
   }
 
   .layout-contenido {

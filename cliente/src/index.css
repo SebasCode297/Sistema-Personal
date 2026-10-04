@@ -1,35 +1,70 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+/* ==============================================================================
+   MiPanel — Sistema de Diseño Inspirado en la Identidad Visual ISTER (ister.edu.ec)
+   Paleta: Azul Universitario ISTER (#263889) + Naranja Institucional (#FE9200)
+   Regla clave: Cero iconos y emojis. Solo tipografía, proporciones y CSS puro.
+   ============================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=Figtree:wght@400;500;600;700;800&display=swap');
 
 :root {
-  --fuente-principal: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --fuente-principal: 'Figtree', 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   
-  /* Paleta cromática profesional y armónica */
-  --bg-principal: #0b0f19;
-  --bg-secundario: #111827;
-  --bg-tarjeta: rgba(17, 24, 39, 0.75);
-  --bg-tarjeta-hover: rgba(24, 34, 53, 0.85);
-  --borde-suave: rgba(255, 255, 255, 0.08);
-  --borde-foco: #3b82f6;
+  /* Colores Institucionales ISTER (ister.edu.ec) */
+  --color-primario: #263889;          /* Azul Institucional ISTER */
+  --color-primario-hover: #1b2966;    /* Azul profundo hover */
+  --color-primario-suave: #EEF2FF;    /* Azul tenue fondos */
   
-  --texto-principal: #f9fafb;
-  --texto-secundario: #9ca3af;
-  --texto-muted: #6b7280;
-  
-  --color-primario: #3b82f6;
-  --color-primario-hover: #2563eb;
-  --color-primario-glow: rgba(59, 130, 246, 0.35);
-  
-  --color-exito: #10b981;
-  --color-exito-bg: rgba(16, 185, 129, 0.12);
-  --color-error: #ef4444;
-  --color-error-bg: rgba(239, 68, 68, 0.12);
-  --color-advertencia: #f59e0b;
-  
-  --sombra-tarjeta: 0 10px 25px -5px rgba(0, 0, 0, 0.4), 0 8px 10px -6px rgba(0, 0, 0, 0.3);
-  --radio-sm: 8px;
-  --radio-md: 14px;
-  --radio-lg: 20px;
-  --transicion: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+  --color-acento: #FE9200;            /* Naranja Vibrante ISTER */
+  --color-acento-hover: #e07d00;      /* Naranja oscuro hover */
+  --color-acento-suave: #FFF7ED;      /* Naranja tenue fondos */
+  --color-acento-glow: rgba(254, 146, 0, 0.28);
+
+  /* Fondos limpios y profesionales */
+  --bg-principal: #F8FAFC;            /* Fondo general claro de alta legibilidad */
+  --bg-secundario: #FFFFFF;           /* Fondo de tarjetas y paneles */
+  --bg-sidebar: #0D1842;              /* Azul marino noche para navegación */
+  --bg-sidebar-elevado: #15245B;      /* Azul navegación activa / elevaciones */
+  --bg-tarjeta: #FFFFFF;
+  --bg-tarjeta-hover: #FAFCFF;
+
+  /* Bordes y líneas finas */
+  --borde-suave: #E2E8F0;
+  --borde-medio: #CBD5E1;
+  --borde-foco: #FE9200;
+
+  /* Tipografía y textos de alto contraste */
+  --texto-principal: #0F172A;
+  --texto-secundario: #475569;
+  --texto-muted: #64748B;
+  --texto-inverso: #FFFFFF;
+  --texto-sidebar: #E2E8F0;
+
+  /* Estados y semántica */
+  --color-exito: #059669;
+  --color-exito-bg: #ECFDF5;
+  --color-exito-borde: #A7F3D0;
+
+  --color-error: #DC2626;
+  --color-error-bg: #FEF2F2;
+  --color-error-borde: #FECACA;
+
+  --color-advertencia: #D97706;
+  --color-advertencia-bg: #FFFBEB;
+  --color-advertencia-borde: #FDE68A;
+
+  /* Sombras suaves modernas */
+  --sombra-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --sombra-tarjeta: 0 4px 6px -1px rgba(15, 23, 42, 0.05), 0 2px 4px -2px rgba(15, 23, 42, 0.04);
+  --sombra-tarjeta-hover: 0 10px 15px -3px rgba(15, 23, 42, 0.08), 0 4px 6px -4px rgba(15, 23, 42, 0.04);
+  --sombra-elevada: 0 20px 25px -5px rgba(15, 23, 42, 0.12), 0 8px 10px -6px rgba(15, 23, 42, 0.08);
+
+  /* Radios */
+  --radio-sm: 6px;
+  --radio-md: 10px;
+  --radio-lg: 16px;
+  --radio-full: 9999px;
+
+  --transicion: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 *, *::before, *::after {
@@ -46,13 +81,6 @@ html, body, #root {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-body {
-  background-image: 
-    radial-gradient(at 0% 0%, rgba(59, 130, 246, 0.12) 0px, transparent 50%),
-    radial-gradient(at 100% 100%, rgba(139, 92, 246, 0.1) 0px, transparent 50%);
-  background-attachment: fixed;
 }
 
 /* Tipografía */
@@ -73,16 +101,17 @@ a {
 }
 
 a:hover {
+  color: var(--color-acento);
   text-decoration: underline;
 }
 
-/* Botones */
+/* Botones con estilo institucional */
 button {
   font-family: inherit;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   font-weight: 600;
-  min-height: 44px;
-  padding: 0.75rem 1.4rem;
+  min-height: 40px;
+  padding: 0.6rem 1.25rem;
   border-radius: var(--radio-sm);
   border: 1px solid transparent;
   cursor: pointer;
@@ -94,119 +123,137 @@ button {
 }
 
 .btn-primario {
-  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+  background-color: var(--color-acento);
   color: #ffffff;
-  box-shadow: 0 4px 14px var(--color-primario-glow);
+  box-shadow: 0 2px 8px var(--color-acento-glow);
 }
 
-.btn-primario:hover:not(:disabled) {
+.btn-primario:hover {
+  background-color: var(--color-acento-hover);
+  box-shadow: 0 4px 12px var(--color-acento-glow);
   transform: translateY(-1px);
-  box-shadow: 0 6px 20px var(--color-primario-glow);
-  background: linear-gradient(135deg, #60a5fa 0%, #2563eb 100%);
 }
 
 .btn-secundario {
-  background: rgba(255, 255, 255, 0.05);
-  color: var(--texto-principal);
-  border: 1px solid var(--borde-suave);
-}
-
-.btn-secundario:hover:not(:disabled) {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.2);
-}
-
-.btn-peligro {
-  background: rgba(239, 68, 68, 0.15);
-  color: #f87171;
-  border: 1px solid rgba(239, 68, 68, 0.3);
-}
-
-.btn-peligro:hover:not(:disabled) {
-  background: rgba(239, 68, 68, 0.25);
-  border-color: rgba(239, 68, 68, 0.5);
-}
-
-button:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-  transform: none !important;
-}
-
-/* Campos de Formulario */
-.campo-grupo {
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-  margin-bottom: 1.25rem;
-  text-align: left;
-}
-
-.campo-grupo label {
-  font-size: 0.85rem;
-  font-weight: 600;
+  background-color: #ffffff;
+  border: 1px solid var(--borde-medio);
   color: var(--texto-secundario);
 }
 
-.campo-input {
+.btn-secundario:hover {
+  background-color: #F8FAFC;
+  color: var(--color-primario);
+  border-color: var(--color-primario);
+}
+
+.btn-institucional {
+  background-color: var(--color-primario);
+  color: #ffffff;
+}
+
+.btn-institucional:hover {
+  background-color: var(--color-primario-hover);
+  transform: translateY(-1px);
+}
+
+.btn-peligro {
+  background-color: var(--color-error);
+  color: #ffffff;
+}
+
+.btn-peligro:hover {
+  background-color: #b91c1c;
+}
+
+/* Campos de Formulario */
+.campo-formulario {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: 1.15rem;
+  text-align: left;
+}
+
+.campo-formulario label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--texto-principal);
+}
+
+.campo-formulario input,
+.campo-formulario select,
+.campo-formulario textarea {
   width: 100%;
-  min-height: 44px;
-  padding: 0.75rem 1rem;
-  background: rgba(17, 24, 39, 0.9);
-  border: 1px solid var(--borde-suave);
+  padding: 0.65rem 0.85rem;
   border-radius: var(--radio-sm);
+  border: 1px solid var(--borde-medio);
+  background: #ffffff;
   color: var(--texto-principal);
   font-family: inherit;
-  font-size: 0.95rem;
-  transition: var(--transicion);
+  font-size: 0.9rem;
   outline: none;
+  transition: var(--transicion);
 }
 
-.campo-input:focus {
-  border-color: var(--borde-foco);
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
+.campo-formulario input:focus,
+.campo-formulario select:focus,
+.campo-formulario textarea:focus {
+  border-color: var(--color-primario);
+  box-shadow: 0 0 0 3px rgba(38, 56, 137, 0.15);
 }
 
-.campo-input::placeholder {
-  color: var(--texto-muted);
+.campo-error {
+  color: var(--color-error);
+  font-size: 0.8rem;
+  font-weight: 500;
+  margin-top: 0.25rem;
 }
 
 /* Alertas */
 .alerta {
-  padding: 0.85rem 1.1rem;
+  padding: 0.85rem 1rem;
   border-radius: var(--radio-sm);
-  font-size: 0.9rem;
+  font-size: 0.875rem;
+  font-weight: 500;
   margin-bottom: 1.25rem;
   display: flex;
   align-items: center;
-  gap: 0.6rem;
+  justify-content: space-between;
 }
 
 .alerta-error {
-  background: var(--color-error-bg);
-  border: 1px solid rgba(239, 68, 68, 0.3);
-  color: #fca5a5;
+  background-color: var(--color-error-bg);
+  border: 1px solid var(--color-error-borde);
+  color: var(--color-error);
 }
 
 .alerta-exito {
-  background: var(--color-exito-bg);
-  border: 1px solid rgba(16, 185, 129, 0.3);
-  color: #6ee7b7;
+  background-color: var(--color-exito-bg);
+  border: 1px solid var(--color-exito-borde);
+  color: var(--color-exito);
 }
 
-/* Spinner */
-.spinner {
-  width: 20px;
-  height: 20px;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  border-radius: 50%;
-  border-top-color: #ffffff;
-  animation: girar 0.75s linear infinite;
-  display: inline-block;
+.alerta-info {
+  background-color: var(--color-primario-suave);
+  border: 1px solid #C7D2FE;
+  color: var(--color-primario);
 }
 
-@keyframes girar {
-  to {
-    transform: rotate(360deg);
-  }
+/* Scrollbar estilizada */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-principal);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
 }

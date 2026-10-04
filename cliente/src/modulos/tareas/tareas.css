@@ -1,3 +1,7 @@
+/* ==============================================================================
+   Módulo de Tareas — Estilos Visuales (Inspirado en ISTER ister.edu.ec)
+   ============================================================================== */
+
 .tareas-header {
   padding-bottom: 1.5rem;
   border-bottom: 1px solid var(--borde-suave);
@@ -11,16 +15,17 @@
   text-transform: uppercase;
   letter-spacing: 0.06em;
   padding: 0.2rem 0.65rem;
-  border-radius: 999px;
-  background: rgba(59, 130, 246, 0.12);
-  color: #60a5fa;
-  border: 1px solid rgba(59, 130, 246, 0.3);
+  border-radius: var(--radio-full);
+  background: var(--color-primario-suave);
+  color: var(--color-primario);
+  border: 1px solid #C7D2FE;
 }
 
 .tareas-titulo {
   margin-top: 0.45rem;
   font-size: 1.75rem;
   font-weight: 800;
+  color: var(--texto-principal);
 }
 
 .tareas-subtitulo {
@@ -28,6 +33,7 @@
   color: var(--texto-secundario);
 }
 
+/* Tarjetas de Resumen */
 .tareas-resumen-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -36,15 +42,33 @@
 }
 
 .tareas-tarjeta-resumen {
-  background: var(--bg-tarjeta);
+  background: #ffffff;
   border: 1px solid var(--borde-suave);
   border-radius: var(--radio-md);
   padding: 1.3rem 1.4rem;
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
+  box-shadow: var(--sombra-tarjeta);
+  border-top: 4px solid var(--color-primario);
+  transition: var(--transicion);
 }
 
+.tareas-tarjeta-resumen:hover {
+  border-color: var(--borde-medio);
+  box-shadow: var(--sombra-tarjeta-hover);
+  transform: translateY(-1px);
+}
+
+.tareas-tarjeta-resumen:nth-child(2) {
+  border-top-color: var(--color-acento);
+}
+
+.tareas-tarjeta-resumen:nth-child(3) {
+  border-top-color: var(--color-exito);
+}
+
+/* Estructura Tabla y Formulario */
 .tareas-cuerpo {
   display: grid;
   grid-template-columns: 1fr 340px;
@@ -53,19 +77,22 @@
 }
 
 .tareas-panel-accion {
-  background: var(--bg-tarjeta);
+  background: #ffffff;
   border: 1px solid var(--borde-suave);
   border-radius: var(--radio-md);
   padding: 1.5rem;
   position: sticky;
   top: 1.5rem;
+  box-shadow: var(--sombra-tarjeta);
 }
 
 .tareas-panel-titulo {
   font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-primario);
   margin-bottom: 1rem;
   padding-bottom: 0.75rem;
-  border-bottom: 1px solid var(--borde-suave);
+  border-bottom: 2px solid var(--color-primario-suave);
 }
 
 .tareas-filtros {
@@ -76,10 +103,11 @@
 }
 
 .tareas-tabla-contenedor {
-  background: var(--bg-tarjeta);
+  background: #ffffff;
   border: 1px solid var(--borde-suave);
   border-radius: var(--radio-md);
   overflow: hidden;
+  box-shadow: var(--sombra-tarjeta);
 }
 
 .tareas-tabla {
@@ -91,61 +119,86 @@
 .tareas-tabla td {
   padding: 0.9rem 1rem;
   text-align: left;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  border-bottom: 1px solid var(--borde-suave);
   vertical-align: top;
 }
 
 .tareas-tabla th {
   font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--texto-muted);
+  background: #F8FAFC;
+  border-bottom: 2px solid var(--borde-suave);
+}
+
+.tareas-tabla tr:hover td {
+  background: #F8FAFC;
+}
+
+/* Badges de Prioridad y Estado */
+.badge-prioridad {
+  font-size: 0.72rem;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: var(--texto-muted);
-  background: rgba(0, 0, 0, 0.2);
-}
-
-.tareas-descripcion {
-  margin-top: 0.25rem;
-  font-size: 0.82rem;
-  color: var(--texto-muted);
-}
-
-.badge-prioridad,
-.badge-estado {
-  display: inline-block;
-  font-size: 0.75rem;
-  font-weight: 700;
   padding: 0.15rem 0.5rem;
-  border-radius: 4px;
+  border-radius: var(--radio-full);
 }
 
-.badge-prioridad.alta { background: rgba(239, 68, 68, 0.15); color: #f87171; }
-.badge-prioridad.media { background: rgba(245, 158, 11, 0.15); color: #fbbf24; }
-.badge-prioridad.baja { background: rgba(16, 185, 129, 0.15); color: #34d399; }
+.badge-prioridad.alta {
+  background: var(--color-error-bg);
+  color: var(--color-error);
+  border: 1px solid var(--color-error-borde);
+}
 
-.badge-estado.pendiente { background: rgba(156, 163, 175, 0.15); color: #d1d5db; }
-.badge-estado.en_progreso { background: rgba(59, 130, 246, 0.15); color: #60a5fa; }
-.badge-estado.completada { background: rgba(16, 185, 129, 0.15); color: #34d399; }
+.badge-prioridad.media {
+  background: var(--color-acento-suave);
+  color: var(--color-acento);
+  border: 1px solid #FED7AA;
+}
 
-.tareas-empty {
-  padding: 2.5rem 1rem;
-  text-align: center;
+.badge-prioridad.baja {
+  background: var(--color-primario-suave);
+  color: var(--color-primario);
+  border: 1px solid #C7D2FE;
+}
+
+.badge-estado-tarea {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--radio-full);
+}
+
+.badge-estado-tarea.completada {
+  background: var(--color-exito-bg);
+  color: var(--color-exito);
+  border: 1px solid var(--color-exito-borde);
+}
+
+.badge-estado-tarea.en_progreso {
+  background: var(--color-primario-suave);
+  color: var(--color-primario);
+  border: 1px solid #C7D2FE;
+}
+
+.badge-estado-tarea.pendiente {
+  background: #F1F5F9;
   color: var(--texto-muted);
+  border: 1px solid var(--borde-suave);
 }
 
-.tareas-formulario textarea.campo-input {
-  min-height: 88px;
-  resize: vertical;
-}
-
-@media (max-width: 1100px) {
-  .tareas-cuerpo { grid-template-columns: 1fr; }
-  .tareas-panel-accion { position: static; }
+/* Responsive */
+@media (max-width: 1024px) {
+  .tareas-cuerpo {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 640px) {
-  .tareas-resumen-grid,
-  .tareas-filtros { grid-template-columns: 1fr; }
-
-  .tareas-tabla th:nth-child(4),
-  .tareas-tabla td:nth-child(4) { display: none; }
+  .tareas-resumen-grid {
+    grid-template-columns: 1fr;
+  }
 }

@@ -1,4 +1,6 @@
-/* Módulo de Finanzas — Estilos independientes */
+/* ==============================================================================
+   Módulo de Finanzas — Estilos Visuales (Inspirado en ISTER ister.edu.ec)
+   ============================================================================== */
 
 /* Cabecera del módulo */
 .finanzas-header {
@@ -25,10 +27,10 @@
   text-transform: uppercase;
   letter-spacing: 0.06em;
   padding: 0.2rem 0.65rem;
-  border-radius: 999px;
-  background: rgba(16, 185, 129, 0.12);
-  color: #34d399;
-  border: 1px solid rgba(16, 185, 129, 0.3);
+  border-radius: var(--radio-full);
+  background: var(--color-primario-suave);
+  color: var(--color-primario);
+  border: 1px solid #C7D2FE;
   width: fit-content;
 }
 
@@ -36,6 +38,7 @@
   font-size: 1.75rem;
   font-weight: 800;
   letter-spacing: -0.03em;
+  color: var(--texto-principal);
 }
 
 .finanzas-subtitulo {
@@ -58,8 +61,8 @@
 
 .finanzas-filtro-mes input[type="month"] {
   padding: 0.45rem 0.75rem;
-  background: var(--bg-secundario);
-  border: 1px solid var(--borde-suave);
+  background: #ffffff;
+  border: 1px solid var(--borde-medio);
   border-radius: var(--radio-sm);
   color: var(--texto-principal);
   font-family: inherit;
@@ -70,8 +73,8 @@
 }
 
 .finanzas-filtro-mes input[type="month"]:focus {
-  border-color: var(--borde-foco);
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+  border-color: var(--color-primario);
+  box-shadow: 0 0 0 3px rgba(38, 56, 137, 0.15);
 }
 
 /* Tarjetas de resumen superior */
@@ -83,7 +86,7 @@
 }
 
 .finanzas-tarjeta-resumen {
-  background: var(--bg-tarjeta);
+  background: #ffffff;
   border: 1px solid var(--borde-suave);
   border-radius: var(--radio-md);
   padding: 1.4rem 1.5rem;
@@ -91,11 +94,22 @@
   flex-direction: column;
   gap: 0.5rem;
   transition: var(--transicion);
+  box-shadow: var(--sombra-tarjeta);
+  border-top: 4px solid var(--color-primario);
 }
 
 .finanzas-tarjeta-resumen:hover {
-  border-color: rgba(255, 255, 255, 0.14);
+  border-color: var(--borde-medio);
+  box-shadow: var(--sombra-tarjeta-hover);
   transform: translateY(-1px);
+}
+
+.finanzas-tarjeta-resumen:nth-child(2) {
+  border-top-color: var(--color-exito);
+}
+
+.finanzas-tarjeta-resumen:nth-child(3) {
+  border-top-color: var(--color-error);
 }
 
 .tarjeta-resumen-etiqueta {
@@ -113,15 +127,16 @@
   line-height: 1;
 }
 
-.tarjeta-resumen-monto.positivo { color: #34d399; }
-.tarjeta-resumen-monto.negativo { color: #f87171; }
-.tarjeta-resumen-monto.neutro   { color: var(--texto-principal); }
+.tarjeta-resumen-monto.positivo { color: var(--color-exito); }
+.tarjeta-resumen-monto.negativo { color: var(--color-error); }
+.tarjeta-resumen-monto.neutro   { color: var(--color-primario); }
 
 .tarjeta-resumen-subtexto {
   font-size: 0.82rem;
   color: var(--texto-muted);
 }
 
+/* Gráficos y Estadísticas */
 .finanzas-estadisticas {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -130,10 +145,11 @@
 }
 
 .finanzas-panel-estadistica {
-  background: var(--bg-tarjeta);
+  background: #ffffff;
   border: 1px solid var(--borde-suave);
   border-radius: var(--radio-md);
   padding: 1.4rem 1.5rem;
+  box-shadow: var(--sombra-tarjeta);
 }
 
 .finanzas-barras {
@@ -154,8 +170,8 @@
 
 .finanzas-barra-fondo {
   height: 8px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.06);
+  border-radius: var(--radio-full);
+  background: #F1F5F9;
   overflow: hidden;
 }
 
@@ -165,7 +181,7 @@
 }
 
 .finanzas-barra-valor.gasto {
-  background: #f87171;
+  background: var(--color-error);
 }
 
 .finanzas-evolucion {
@@ -199,8 +215,8 @@
   border-radius: 4px 4px 0 0;
 }
 
-.finanzas-evolucion-col.ingreso { background: #34d399; }
-.finanzas-evolucion-col.gasto { background: #f87171; }
+.finanzas-evolucion-col.ingreso { background: var(--color-exito); }
+.finanzas-evolucion-col.gasto { background: var(--color-error); }
 
 .finanzas-evolucion-mes {
   font-size: 0.72rem;
@@ -217,7 +233,7 @@
 
 /* Panel de acciones y formulario */
 .finanzas-panel-accion {
-  background: var(--bg-tarjeta);
+  background: #ffffff;
   border: 1px solid var(--borde-suave);
   border-radius: var(--radio-md);
   padding: 1.5rem;
@@ -226,14 +242,15 @@
   gap: 1.25rem;
   position: sticky;
   top: 1.5rem;
+  box-shadow: var(--sombra-tarjeta);
 }
 
 .finanzas-panel-titulo {
   font-size: 1rem;
   font-weight: 700;
-  color: var(--texto-principal);
+  color: var(--color-primario);
   padding-bottom: 0.75rem;
-  border-bottom: 1px solid var(--borde-suave);
+  border-bottom: 2px solid var(--color-primario-suave);
 }
 
 .finanzas-tipo-selector {
@@ -247,179 +264,105 @@
   font-size: 0.9rem;
   font-weight: 600;
   border-radius: var(--radio-sm);
-  border: 1px solid var(--borde-suave);
-  background: transparent;
+  border: 1px solid var(--borde-medio);
+  background: #ffffff;
   color: var(--texto-secundario);
   cursor: pointer;
   transition: var(--transicion);
-  min-height: 38px;
 }
 
-.btn-tipo.activo-ingreso {
-  background: rgba(16, 185, 129, 0.15);
-  border-color: rgba(16, 185, 129, 0.4);
-  color: #34d399;
+.btn-tipo:hover {
+  background: #F8FAFC;
+  color: var(--texto-principal);
 }
 
-.btn-tipo.activo-gasto {
-  background: rgba(239, 68, 68, 0.15);
-  border-color: rgba(239, 68, 68, 0.4);
-  color: #f87171;
+.btn-tipo.activo.gasto {
+  background: var(--color-error-bg);
+  border-color: var(--color-error);
+  color: var(--color-error);
 }
 
-.finanzas-formulario {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
+.btn-tipo.activo.ingreso {
+  background: var(--color-exito-bg);
+  border-color: var(--color-exito);
+  color: var(--color-exito);
 }
 
-.btn-guardar-movimiento {
-  width: 100%;
-  margin-top: 0.5rem;
-}
-
-/* Tabla de transacciones */
-.finanzas-lista-panel {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.finanzas-lista-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-}
-
-.finanzas-tabs {
-  display: flex;
-  background: var(--bg-secundario);
-  border: 1px solid var(--borde-suave);
-  border-radius: var(--radio-sm);
-  padding: 3px;
-  gap: 2px;
-}
-
-.finanzas-tab {
-  padding: 0.4rem 1rem;
-  font-size: 0.88rem;
-  font-weight: 600;
-  border-radius: 5px;
-  border: none;
-  background: transparent;
-  color: var(--texto-secundario);
-  cursor: pointer;
-  transition: var(--transicion);
-  min-height: auto;
-}
-
-.finanzas-tab.activo {
-  background: var(--color-primario);
-  color: #fff;
-}
-
-.finanzas-tabla-contenedor {
-  background: var(--bg-tarjeta);
+/* Tablas de Movimientos */
+.finanzas-tabla-panel {
+  background: #ffffff;
   border: 1px solid var(--borde-suave);
   border-radius: var(--radio-md);
-  overflow: hidden;
+  padding: 1.5rem;
+  box-shadow: var(--sombra-tarjeta);
+  overflow-x: auto;
+}
+
+.finanzas-tabla-vacia {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--texto-muted);
+  font-size: 0.95rem;
 }
 
 .finanzas-tabla {
   width: 100%;
   border-collapse: collapse;
+  text-align: left;
+  font-size: 0.9rem;
 }
 
 .finanzas-tabla th {
-  padding: 0.85rem 1rem;
-  text-align: left;
+  padding: 0.75rem 1rem;
   font-size: 0.78rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   color: var(--texto-muted);
-  background: rgba(0, 0, 0, 0.2);
-  border-bottom: 1px solid var(--borde-suave);
+  border-bottom: 2px solid var(--borde-suave);
+  background: #F8FAFC;
 }
 
 .finanzas-tabla td {
   padding: 0.9rem 1rem;
-  font-size: 0.9rem;
+  border-bottom: 1px solid var(--borde-suave);
   color: var(--texto-principal);
-  border-bottom: 1px solid rgba(255,255,255,0.04);
-  vertical-align: middle;
 }
-
-.finanzas-tabla tr:last-child td { border-bottom: none; }
 
 .finanzas-tabla tr:hover td {
-  background: rgba(255,255,255,0.025);
+  background: #F8FAFC;
 }
 
-.celda-monto-ingreso { color: #34d399; font-weight: 700; }
-.celda-monto-gasto   { color: #f87171; font-weight: 700; }
-
-.celda-categoria {
-  display: inline-block;
-  font-size: 0.75rem;
-  font-weight: 600;
-  padding: 0.15rem 0.5rem;
-  background: rgba(255,255,255,0.06);
-  border-radius: 4px;
-  color: var(--texto-secundario);
+.finanzas-monto-col {
+  font-weight: 700;
 }
 
-.celda-acciones {
-  display: flex;
-  gap: 0.5rem;
+.finanzas-monto-col.ingreso {
+  color: var(--color-exito);
 }
 
-.btn-accion-tabla {
-  font-size: 0.78rem;
-  padding: 0.3rem 0.6rem;
-  min-height: auto;
-  border-radius: 5px;
+.finanzas-monto-col.gasto {
+  color: var(--color-error);
 }
 
-.finanzas-empty {
-  padding: 2.5rem 1rem;
-  text-align: center;
-  color: var(--texto-muted);
-  font-size: 0.9rem;
+/* Responsive Finanzas */
+@media (max-width: 1024px) {
+  .finanzas-cuerpo {
+    grid-template-columns: 1fr;
+  }
+
+  .finanzas-estadisticas {
+    grid-template-columns: 1fr;
+  }
 }
 
-.finanzas-cargando {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 2.5rem;
-  color: var(--texto-muted);
-  gap: 0.75rem;
-}
-
-/* Responsive tablet */
-@media (max-width: 1100px) {
-  .finanzas-resumen-grid { grid-template-columns: repeat(2, 1fr); }
-  .finanzas-estadisticas { grid-template-columns: 1fr; }
-  .finanzas-cuerpo { grid-template-columns: 1fr; }
-  .finanzas-panel-accion { position: static; }
-}
-
-/* Responsive móvil */
 @media (max-width: 640px) {
-  .finanzas-resumen-grid { grid-template-columns: 1fr; gap: 0.85rem; }
+  .finanzas-resumen-grid {
+    grid-template-columns: 1fr;
+  }
 
   .finanzas-header {
     flex-direction: column;
     align-items: stretch;
   }
-
-  .finanzas-titulo { font-size: 1.4rem; }
-
-  .finanzas-tabla th:nth-child(4),
-  .finanzas-tabla td:nth-child(4) { display: none; }
-
-  .tarjeta-resumen-monto { font-size: 1.5rem; }
 }
