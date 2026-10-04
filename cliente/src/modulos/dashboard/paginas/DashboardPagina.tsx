@@ -142,7 +142,7 @@ export const DashboardPagina: React.FC = () => {
                     Gestión de datos de cuenta, seguridad y cambio de contraseña.
                   </p>
                 </div>
-                <span className="item-modulo-estado siguiente">Siguiente Fase</span>
+                <span className="item-modulo-estado listo">Completado</span>
               </li>
             </ul>
           </div>

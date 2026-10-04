@@ -10,6 +10,7 @@ const rutasTareas = require("./modulos/tareas/rutas");
 const rutasMetas = require("./modulos/metas/rutas");
 const rutasCalendario = require("./modulos/calendario/rutas");
 const rutasNotificaciones = require("./modulos/notificaciones/rutas");
+const rutasPerfil = require("./modulos/perfil/rutas");
 
 const app = express();
 const puerto = Number(process.env.PORT || 4000);
@@ -39,6 +40,9 @@ app.use("/api/calendario", rutasCalendario);
 
 // Módulo de Notificaciones (Fase 8)
 app.use("/api/notificaciones", rutasNotificaciones);
+
+// Módulo de Perfil (Fase 9)
+app.use("/api/perfil", rutasPerfil);
 
 app.get("/api/salud", async (_req, res) => {
   try {

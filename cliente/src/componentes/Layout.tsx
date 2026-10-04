@@ -98,10 +98,13 @@ export const Layout: React.FC = () => {
             <span>Notificaciones</span>
           </NavLink>
 
-          <div className="nav-item deshabilitado">
+          <NavLink
+            to="/perfil"
+            className={({ isActive }) => `nav-item ${isActive ? "activo" : ""}`}
+            onClick={cerrarMenu}
+          >
             <span>Perfil</span>
-            <span className="nav-badge-proximo">Fase 9</span>
-          </div>
+          </NavLink>
         </nav>
 
         {/* Información del usuario y botón de cerrar sesión */}

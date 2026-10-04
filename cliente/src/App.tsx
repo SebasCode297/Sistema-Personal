@@ -11,6 +11,7 @@ import { TareasPagina } from "./modulos/tareas/paginas/TareasPagina";
 import { MetasPagina } from "./modulos/metas/paginas/MetasPagina";
 import { CalendarioPagina } from "./modulos/calendario/paginas/CalendarioPagina";
 import { NotificacionesPagina } from "./modulos/notificaciones/paginas/NotificacionesPagina";
+import { PerfilPagina } from "./modulos/perfil/paginas/PerfilPagina";
 
 /**
  * Componente para rutas públicas (login/registro):
@@ -60,6 +61,7 @@ function RutasApp() {
           <Route path="/metas" element={<MetasPagina />} />
           <Route path="/calendario" element={<CalendarioPagina />} />
           <Route path="/notificaciones" element={<NotificacionesPagina />} />
+          <Route path="/perfil" element={<PerfilPagina />} />
         </Route>
       </Route>
 
