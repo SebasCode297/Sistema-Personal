@@ -8,6 +8,7 @@ import { Layout } from "./componentes/Layout";
 import { DashboardPagina } from "./modulos/dashboard/paginas/DashboardPagina";
 import { FinanzasPagina } from "./modulos/finanzas/paginas/FinanzasPagina";
 import { TareasPagina } from "./modulos/tareas/paginas/TareasPagina";
+import { MetasPagina } from "./modulos/metas/paginas/MetasPagina";
 
 /**
  * Componente para rutas públicas (login/registro):
@@ -54,6 +55,7 @@ function RutasApp() {
           <Route path="/" element={<DashboardPagina />} />
           <Route path="/finanzas" element={<FinanzasPagina />} />
           <Route path="/tareas" element={<TareasPagina />} />
+          <Route path="/metas" element={<MetasPagina />} />
         </Route>
       </Route>
 

@@ -42,7 +42,7 @@ export const DashboardPagina: React.FC = () => {
       <section className="dashboard-grid-metricas" aria-label="Resumen de módulos">
         <ResumenFinanzas />
         <ResumenTareas />
-        <ResumenMetas activas={0} />
+        <ResumenMetas />
         <ResumenCalendario eventosProximos={0} />
         <ResumenNotificaciones noLeidas={0} />
       </section>

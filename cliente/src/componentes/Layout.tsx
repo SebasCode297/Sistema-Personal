@@ -74,10 +74,13 @@ export const Layout: React.FC = () => {
             <span>Tareas</span>
           </NavLink>
 
-          <div className="nav-item deshabilitado">
+          <NavLink
+            to="/metas"
+            className={({ isActive }) => `nav-item ${isActive ? "activo" : ""}`}
+            onClick={cerrarMenu}
+          >
             <span>Metas</span>
-            <span className="nav-badge-proximo">Fase 6</span>
-          </div>
+          </NavLink>
 
           <div className="nav-item deshabilitado">
             <span>Calendario</span>
