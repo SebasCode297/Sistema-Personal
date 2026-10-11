@@ -6,17 +6,11 @@ import { LoginPagina } from "./modulos/auth/paginas/LoginPagina";
 import { RegistroPagina } from "./modulos/auth/paginas/RegistroPagina";
 import { Layout } from "./componentes/Layout";
 import { DashboardPagina } from "./modulos/dashboard/paginas/DashboardPagina";
-import { FinanzasPagina } from "./modulos/finanzas/paginas/FinanzasPagina";
 import { TareasPagina } from "./modulos/tareas/paginas/TareasPagina";
 import { MetasPagina } from "./modulos/metas/paginas/MetasPagina";
-import { CalendarioPagina } from "./modulos/calendario/paginas/CalendarioPagina";
 import { NotificacionesPagina } from "./modulos/notificaciones/paginas/NotificacionesPagina";
 import { PerfilPagina } from "./modulos/perfil/paginas/PerfilPagina";
 
-/**
- * Componente para rutas públicas (login/registro):
- * Si el usuario ya está autenticado, lo redirige directamente al panel principal.
- */
 const RutaPublica: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { estaAutenticado, cargando } = useAuth();
 
@@ -34,7 +28,6 @@ const RutaPublica: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 function RutasApp() {
   return (
     <Routes>
-      {/* Rutas Públicas (Autenticación) */}
       <Route
         path="/login"
         element={
@@ -52,20 +45,17 @@ function RutasApp() {
         }
       />
 
-      {/* Rutas Privadas / Protegidas */}
       <Route element={<RutaProtegida />}>
         <Route element={<Layout />}>
           <Route path="/" element={<DashboardPagina />} />
-          <Route path="/finanzas" element={<FinanzasPagina />} />
           <Route path="/tareas" element={<TareasPagina />} />
           <Route path="/metas" element={<MetasPagina />} />
-          <Route path="/calendario" element={<CalendarioPagina />} />
           <Route path="/notificaciones" element={<NotificacionesPagina />} />
           <Route path="/perfil" element={<PerfilPagina />} />
+          {/* Finanzas y Calendario eliminados */}
         </Route>
       </Route>
 
-      {/* Redirección por defecto */}
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );

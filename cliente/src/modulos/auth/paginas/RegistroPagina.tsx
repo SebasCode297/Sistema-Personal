@@ -74,7 +74,6 @@ export const RegistroPagina: React.FC = () => {
               id="reg-nombre"
               type="text"
               className="campo-input"
-              placeholder="Ej. Carlos Mendoza"
               value={nombre}
               onChange={(e) => setNombre(e.target.value)}
               disabled={cargando}
@@ -89,7 +88,6 @@ export const RegistroPagina: React.FC = () => {
               id="reg-email"
               type="email"
               className="campo-input"
-              placeholder="tu@email.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               disabled={cargando}
@@ -104,7 +102,6 @@ export const RegistroPagina: React.FC = () => {
               id="reg-password"
               type="password"
               className="campo-input"
-              placeholder="••••••••"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               disabled={cargando}
@@ -119,7 +116,6 @@ export const RegistroPagina: React.FC = () => {
               id="reg-confirm-password"
               type="password"
               className="campo-input"
-              placeholder="••••••••"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
               disabled={cargando}

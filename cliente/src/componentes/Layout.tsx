@@ -59,14 +59,6 @@ export const Layout: React.FC = () => {
           </NavLink>
 
           <NavLink
-            to="/finanzas"
-            className={({ isActive }) => `nav-item ${isActive ? "activo" : ""}`}
-            onClick={cerrarMenu}
-          >
-            <span>Finanzas</span>
-          </NavLink>
-
-          <NavLink
             to="/tareas"
             className={({ isActive }) => `nav-item ${isActive ? "activo" : ""}`}
             onClick={cerrarMenu}
@@ -80,14 +72,6 @@ export const Layout: React.FC = () => {
             onClick={cerrarMenu}
           >
             <span>Metas</span>
-          </NavLink>
-
-          <NavLink
-            to="/calendario"
-            className={({ isActive }) => `nav-item ${isActive ? "activo" : ""}`}
-            onClick={cerrarMenu}
-          >
-            <span>Calendario</span>
           </NavLink>
 
           <NavLink

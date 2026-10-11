@@ -1,7 +1,6 @@
 /* ==============================================================================
-   MiPanel — Sistema de Diseño Inspirado en la Identidad Visual ISTER (ister.edu.ec)
+   MiPanel — Sistema de Diseño Institucional ISTER (ister.edu.ec)
    Paleta: Azul Universitario ISTER (#263889) + Naranja Institucional (#FE9200)
-   Regla clave: Cero iconos y emojis. Solo tipografía, proporciones y CSS puro.
    ============================================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=Figtree:wght@400;500;600;700;800&display=swap');
@@ -30,7 +29,7 @@
   /* Bordes y líneas finas */
   --borde-suave: #E2E8F0;
   --borde-medio: #CBD5E1;
-  --borde-foco: #FE9200;
+  --borde-foco: #263889;
 
   /* Tipografía y textos de alto contraste */
   --texto-principal: #0F172A;
@@ -105,11 +104,82 @@ a:hover {
   text-decoration: underline;
 }
 
-/* Botones con estilo institucional */
+/* Reglas Estrictas para Formularios Parejos y Ordenados */
+.campo-grupo,
+.form-grupo,
+.campo-formulario {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-bottom: 0.95rem;
+  width: 100%;
+  text-align: left;
+}
+
+.campo-grupo label,
+.form-grupo label,
+.campo-formulario label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--texto-principal);
+}
+
+.campo-input,
+.campo-grupo input,
+.campo-grupo select,
+.campo-grupo textarea,
+.form-grupo input,
+.form-grupo select,
+.form-grupo textarea,
+.campo-formulario input,
+.campo-formulario select,
+.campo-formulario textarea {
+  width: 100% !important;
+  box-sizing: border-box !important;
+  padding: 0.65rem 0.85rem;
+  border-radius: var(--radio-sm);
+  border: 1px solid var(--borde-medio);
+  background: #ffffff;
+  color: var(--texto-principal);
+  font-family: inherit;
+  font-size: 0.9rem;
+  outline: none;
+  transition: var(--transicion);
+  min-height: 40px;
+}
+
+.campo-input:focus,
+.campo-grupo input:focus,
+.campo-grupo select:focus,
+.campo-grupo textarea:focus,
+.form-grupo input:focus,
+.form-grupo select:focus,
+.form-grupo textarea:focus,
+.campo-formulario input:focus,
+.campo-formulario select:focus,
+.campo-formulario textarea:focus {
+  border-color: var(--color-primario);
+  box-shadow: 0 0 0 3px rgba(38, 56, 137, 0.15);
+}
+
+.form-fila-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+@media (max-width: 480px) {
+  .form-fila-2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Botones */
 button {
   font-family: inherit;
   font-size: 0.9rem;
-  font-weight: 600;
+  font-weight: 700;
   min-height: 40px;
   padding: 0.6rem 1.25rem;
   border-radius: var(--radio-sm);
@@ -122,13 +192,15 @@ button {
   transition: var(--transicion);
 }
 
-.btn-primario {
+.btn-primario,
+.btn-submit {
   background-color: var(--color-acento);
   color: #ffffff;
   box-shadow: 0 2px 8px var(--color-acento-glow);
 }
 
-.btn-primario:hover {
+.btn-primario:hover,
+.btn-submit:hover {
   background-color: var(--color-acento-hover);
   box-shadow: 0 4px 12px var(--color-acento-glow);
   transform: translateY(-1px);
@@ -165,50 +237,6 @@ button {
   background-color: #b91c1c;
 }
 
-/* Campos de Formulario */
-.campo-formulario {
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-  margin-bottom: 1.15rem;
-  text-align: left;
-}
-
-.campo-formulario label {
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: var(--texto-principal);
-}
-
-.campo-formulario input,
-.campo-formulario select,
-.campo-formulario textarea {
-  width: 100%;
-  padding: 0.65rem 0.85rem;
-  border-radius: var(--radio-sm);
-  border: 1px solid var(--borde-medio);
-  background: #ffffff;
-  color: var(--texto-principal);
-  font-family: inherit;
-  font-size: 0.9rem;
-  outline: none;
-  transition: var(--transicion);
-}
-
-.campo-formulario input:focus,
-.campo-formulario select:focus,
-.campo-formulario textarea:focus {
-  border-color: var(--color-primario);
-  box-shadow: 0 0 0 3px rgba(38, 56, 137, 0.15);
-}
-
-.campo-error {
-  color: var(--color-error);
-  font-size: 0.8rem;
-  font-weight: 500;
-  margin-top: 0.25rem;
-}
-
 /* Alertas */
 .alerta {
   padding: 0.85rem 1rem;
@@ -216,9 +244,6 @@ button {
   font-size: 0.875rem;
   font-weight: 500;
   margin-bottom: 1.25rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
 }
 
 .alerta-error {
@@ -239,21 +264,107 @@ button {
   color: var(--color-primario);
 }
 
-/* Scrollbar estilizada */
+/* Scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
-
 ::-webkit-scrollbar-track {
   background: var(--bg-principal);
 }
-
 ::-webkit-scrollbar-thumb {
   background: #CBD5E1;
   border-radius: 999px;
 }
-
 ::-webkit-scrollbar-thumb:hover {
   background: #94A3B8;
 }
+
+/* Botón de Acción Principal (Crear) */
+.btn-crear-accion {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: var(--color-acento);
+  color: #ffffff;
+  border: none;
+  padding: 0.65rem 1.35rem;
+  border-radius: var(--radio-sm);
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transicion);
+  box-shadow: 0 2px 8px var(--color-acento-glow);
+  white-space: nowrap;
+}
+
+.btn-crear-accion:hover {
+  background-color: var(--color-acento-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px var(--color-acento-glow);
+}
+
+/* Modales Compartidos */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(13, 24, 66, 0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  z-index: 1000;
+  backdrop-filter: blur(4px);
+}
+
+.modal-contenedor {
+  background-color: #ffffff;
+  width: 100%;
+  max-width: 520px;
+  max-height: 90vh;
+  overflow-y: auto;
+  border-radius: var(--radio-md);
+  box-shadow: var(--sombra-elevada);
+  padding: 1.75rem;
+  border: 1px solid var(--borde-suave);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid var(--color-primario-suave);
+  padding-bottom: 0.85rem;
+  margin-bottom: 1.25rem;
+}
+
+.modal-header h2 {
+  font-size: 1.25rem;
+  color: var(--color-primario);
+  margin: 0;
+  font-weight: 800;
+}
+
+.btn-cerrar-modal {
+  background: none;
+  border: 1px solid var(--borde-medio);
+  padding: 0.3rem 0.6rem;
+  border-radius: var(--radio-sm);
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  color: var(--texto-muted);
+  transition: var(--transicion);
+  line-height: 1;
+}
+
+.btn-cerrar-modal:hover {
+  background-color: #F1F5F9;
+  color: var(--texto-principal);
+  border-color: var(--texto-muted);
+}
+

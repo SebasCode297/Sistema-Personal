@@ -53,7 +53,6 @@ export const LoginPagina: React.FC = () => {
               id="login-email"
               type="email"
               className="campo-input"
-              placeholder="tu@email.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               disabled={cargando}
@@ -68,7 +67,6 @@ export const LoginPagina: React.FC = () => {
               id="login-password"
               type="password"
               className="campo-input"
-              placeholder="••••••••"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               disabled={cargando}

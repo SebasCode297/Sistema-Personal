@@ -26,10 +26,10 @@ export const ResumenNotificaciones: React.FC = () => {
     <TarjetaMetrica
       etiqueta="Notificaciones"
       valor={cargando ? "Cargando..." : noLeidas > 0 ? `${noLeidas} nueva${noLeidas !== 1 ? "s" : ""}` : "Al día"}
-      subtexto="Avisos y alertas del sistema"
+      subtexto="Avisos y recordatorios"
       badgeTexto={noLeidas > 0 ? "Pendiente" : "Al día"}
       badgeTipo={noLeidas > 0 ? "alerta" : "positivo"}
-      textoEstado={noLeidas > 0 ? "Requiere tu atención" : "Sin alertas pendientes"}
+      textoEstado={noLeidas > 0 ? "Por revisar" : "Al día"}
       enlaceTexto="Ver avisos"
       onClickEnlace={() => navigate("/notificaciones")}
     />

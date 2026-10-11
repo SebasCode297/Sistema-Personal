@@ -181,115 +181,115 @@ export const PerfilPagina: React.FC = () => {
         </div>
       </section>
 
-      {/* Formulario Datos Personales */}
-      <section className="perfil-seccion">
-        <h2 className="perfil-seccion-titulo">Datos de la Cuenta</h2>
-        <p className="perfil-seccion-subtitulo">
-          Actualiza tu nombre visible y dirección de correo electrónico
-        </p>
+      {/* Formularios en Grid */}
+      <div className="perfil-grid-formularios">
+        {/* Formulario Datos Personales */}
+        <section className="perfil-seccion">
+          <h2 className="perfil-seccion-titulo">Datos de la Cuenta</h2>
+          <p className="perfil-seccion-subtitulo">
+            Actualiza tu nombre visible y dirección de correo electrónico
+          </p>
 
-        {mensajeDatos && (
-          <div className={mensajeDatos.tipo === "exito" ? "alerta-exito" : "alerta-error"}>
-            {mensajeDatos.texto}
-          </div>
-        )}
+          {mensajeDatos && (
+            <div className={mensajeDatos.tipo === "exito" ? "alerta-exito" : "alerta-error"}>
+              {mensajeDatos.texto}
+            </div>
+          )}
 
-        <form onSubmit={handleActualizarDatos} className="perfil-form">
-          <div className="form-grupo">
-            <label htmlFor="perfil-nombre">Nombre Completo *</label>
-            <input
-              id="perfil-nombre"
-              type="text"
-              value={nombre}
-              onChange={(e) => setNombre(e.target.value)}
-              required
-            />
-          </div>
+          <form onSubmit={handleActualizarDatos} className="perfil-form">
+            <div className="form-grupo">
+              <label htmlFor="perfil-nombre">Nombre Completo *</label>
+              <input
+                id="perfil-nombre"
+                type="text"
+                value={nombre}
+                onChange={(e) => setNombre(e.target.value)}
+                required
+              />
+            </div>
 
-          <div className="form-grupo">
-            <label htmlFor="perfil-email">Correo Electrónico *</label>
-            <input
-              id="perfil-email"
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-          </div>
+            <div className="form-grupo">
+              <label htmlFor="perfil-email">Correo Electrónico *</label>
+              <input
+                id="perfil-email"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            </div>
 
-          <div className="perfil-form-acciones">
-            <button
-              type="submit"
-              className="btn-guardar-perfil"
-              disabled={guardandoDatos}
-            >
-              {guardandoDatos ? "Guardando..." : "Guardar Cambios"}
-            </button>
-          </div>
-        </form>
-      </section>
+            <div className="perfil-form-acciones">
+              <button
+                type="submit"
+                className="btn-guardar-perfil"
+                disabled={guardandoDatos}
+              >
+                {guardandoDatos ? "Guardando..." : "Guardar Cambios"}
+              </button>
+            </div>
+          </form>
+        </section>
 
-      {/* Formulario Seguridad / Contraseña */}
-      <section className="perfil-seccion">
-        <h2 className="perfil-seccion-titulo">Seguridad y Contraseña</h2>
-        <p className="perfil-seccion-subtitulo">
-          Modifica tu contraseña de acceso para proteger tu información personal
-        </p>
+        {/* Formulario Seguridad / Contraseña */}
+        <section className="perfil-seccion">
+          <h2 className="perfil-seccion-titulo">Seguridad y Contraseña</h2>
+          <p className="perfil-seccion-subtitulo">
+            Modifica tu contraseña de acceso para proteger tu información personal
+          </p>
 
-        {mensajePass && (
-          <div className={mensajePass.tipo === "exito" ? "alerta-exito" : "alerta-error"}>
-            {mensajePass.texto}
-          </div>
-        )}
+          {mensajePass && (
+            <div className={mensajePass.tipo === "exito" ? "alerta-exito" : "alerta-error"}>
+              {mensajePass.texto}
+            </div>
+          )}
 
-        <form onSubmit={handleCambiarPassword} className="perfil-form">
-          <div className="form-grupo">
-            <label htmlFor="pass-actual">Contraseña Actual *</label>
-            <input
-              id="pass-actual"
-              type="password"
-              value={passActual}
-              onChange={(e) => setPassActual(e.target.value)}
-              placeholder="Ingresa tu contraseña actual"
-              required
-            />
-          </div>
+          <form onSubmit={handleCambiarPassword} className="perfil-form">
+            <div className="form-grupo">
+              <label htmlFor="pass-actual">Contraseña Actual *</label>
+              <input
+                id="pass-actual"
+                type="password"
+                value={passActual}
+                onChange={(e) => setPassActual(e.target.value)}
+                required
+              />
+            </div>
 
-          <div className="form-grupo">
-            <label htmlFor="pass-nueva">Nueva Contraseña *</label>
-            <input
-              id="pass-nueva"
-              type="password"
-              value={passNueva}
-              onChange={(e) => setPassNueva(e.target.value)}
-              placeholder="Mínimo 6 caracteres"
-              required
-            />
-          </div>
+            <div className="form-grupo">
+              <label htmlFor="pass-nueva">Nueva Contraseña *</label>
+              <input
+                id="pass-nueva"
+                type="password"
+                value={passNueva}
+                onChange={(e) => setPassNueva(e.target.value)}
+                required
+              />
+            </div>
 
-          <div className="form-grupo">
-            <label htmlFor="pass-confirmar">Confirmar Nueva Contraseña *</label>
-            <input
-              id="pass-confirmar"
-              type="password"
-              value={passConfirmar}
-              onChange={(e) => setPassConfirmar(e.target.value)}
-              placeholder="Repite la nueva contraseña"
-              required
-            />
-          </div>
+            <div className="form-grupo">
+              <label htmlFor="pass-confirmar">Confirmar Nueva Contraseña *</label>
+              <input
+                id="pass-confirmar"
+                type="password"
+                value={passConfirmar}
+                onChange={(e) => setPassConfirmar(e.target.value)}
+                required
+              />
+            </div>
 
-          <div className="perfil-form-acciones">
-            <button
-              type="submit"
-              className="btn-guardar-perfil"
-              disabled={guardandoPass}
-            >
-              {guardandoPass ? "Actualizando..." : "Cambiar Contraseña"}
-            </button>
-          </div>
-        </form>
-      </section>
+            <div className="perfil-form-acciones">
+              <button
+                type="submit"
+                className="btn-guardar-perfil"
+                disabled={guardandoPass}
+              >
+                {guardandoPass ? "Actualizando..." : "Cambiar Contraseña"}
+              </button>
+            </div>
+          </form>
+        </section>
+      </div>
 
       {/* Zona de Peligro */}
       <section className="perfil-seccion peligro">
@@ -299,7 +299,7 @@ export const PerfilPagina: React.FC = () => {
         </p>
 
         <div className="advertencia-peligro-txt">
-          Atención: Si eliminas tu cuenta, se borrarán todos tus ingresos, gastos, tareas, metas, eventos y avisos almacenados en la base de datos de manera definitiva.
+          Atención: Si eliminas tu cuenta, se borrarán todos tus registros de tareas, metas y avisos almacenados en la base de datos de manera definitiva.
         </div>
 
         {mensajeEliminar && <div className="alerta-error">{mensajeEliminar}</div>}
@@ -312,7 +312,6 @@ export const PerfilPagina: React.FC = () => {
               type="password"
               value={passEliminar}
               onChange={(e) => setPassEliminar(e.target.value)}
-              placeholder="Tu contraseña actual"
               required
             />
           </div>

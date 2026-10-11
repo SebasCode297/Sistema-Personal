@@ -4,7 +4,6 @@ const {
   listarMetas,
   crearMeta,
   actualizarMeta,
-  actualizarProgreso,
   eliminarMeta,
   resumenMetas,
 } = require("./controlador");
@@ -17,7 +16,6 @@ router.get("/resumen", resumenMetas);
 router.get("/", listarMetas);
 router.post("/", crearMeta);
 router.put("/:id", actualizarMeta);
-router.patch("/:id/progreso", actualizarProgreso);
 router.delete("/:id", eliminarMeta);
 
 module.exports = router;

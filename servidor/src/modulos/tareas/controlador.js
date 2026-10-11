@@ -1,32 +1,39 @@
 const { pool } = require("../../db");
 
-const PRIORIDADES = ["baja", "media", "alta"];
-const ESTADOS = ["pendiente", "en_progreso", "completada"];
+const ESTADOS = ["pendiente", "completada"];
 
-function validarTarea(body, esActualizacion = false) {
-  const { titulo, descripcion, prioridad, fecha_limite, estado } = body;
+function validarTarea(body) {
+  const { titulo, descripcion, fecha_inicio, fecha_fin, fecha_limite, estado, monto } = body;
 
-  if (!esActualizacion || titulo !== undefined) {
-    if (!titulo || typeof titulo !== "string" || titulo.trim().length < 2) {
-      return "El título es obligatorio y debe tener al menos 2 caracteres.";
-    }
-  }
-
-  if (prioridad !== undefined && !PRIORIDADES.includes(prioridad)) {
-    return "La prioridad debe ser: baja, media o alta.";
+  if (!titulo || typeof titulo !== "string" || titulo.trim().length < 2) {
+    return "El título es obligatorio y debe tener al menos 2 caracteres.";
   }
 
   if (estado !== undefined && !ESTADOS.includes(estado)) {
-    return "El estado debe ser: pendiente, en_progreso o completada.";
+    return "El estado debe ser: pendiente o completada.";
   }
 
   if (descripcion !== undefined && descripcion !== null && typeof descripcion !== "string") {
     return "La descripción no es válida.";
   }
 
-  if (fecha_limite !== undefined && fecha_limite !== null && fecha_limite !== "") {
-    if (!/^\d{4}-\d{2}-\d{2}$/.test(fecha_limite)) {
-      return "La fecha límite debe tener el formato YYYY-MM-DD.";
+  if (fecha_inicio !== undefined && fecha_inicio !== null && fecha_inicio !== "") {
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(fecha_inicio)) {
+      return "La fecha de inicio debe tener el formato YYYY-MM-DD.";
+    }
+  }
+
+  const fin = fecha_fin || fecha_limite;
+  if (fin !== undefined && fin !== null && fin !== "") {
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(fin)) {
+      return "La fecha de fin debe tener el formato YYYY-MM-DD.";
+    }
+  }
+
+  if (monto !== undefined && monto !== null && monto !== "") {
+    const num = Number(monto);
+    if (isNaN(num) || num < 0) {
+      return "El monto debe ser un número válido mayor o igual a 0.";
     }
   }
 
@@ -35,10 +42,10 @@ function validarTarea(body, esActualizacion = false) {
 
 async function listarTareas(req, res) {
   try {
-    const { estado, prioridad } = req.query;
+    const { estado } = req.query;
     const params = [req.usuario.id];
     let query = `
-      SELECT id, titulo, descripcion, prioridad, fecha_limite, estado, creado_en, actualizado_en
+      SELECT id, titulo, descripcion, fecha_inicio, fecha_fin, fecha_limite, estado, monto, creado_en, actualizado_en
       FROM tareas
       WHERE usuario_id = $1
     `;
@@ -51,27 +58,10 @@ async function listarTareas(req, res) {
       query += ` AND estado = $${params.length}`;
     }
 
-    if (prioridad) {
-      if (!PRIORIDADES.includes(prioridad)) {
-        return res.status(400).json({ ok: false, mensaje: "Prioridad de filtro no válida." });
-      }
-      params.push(prioridad);
-      query += ` AND prioridad = $${params.length}`;
-    }
-
     query += `
       ORDER BY
-        CASE estado
-          WHEN 'pendiente' THEN 1
-          WHEN 'en_progreso' THEN 2
-          ELSE 3
-        END,
-        CASE prioridad
-          WHEN 'alta' THEN 1
-          WHEN 'media' THEN 2
-          ELSE 3
-        END,
-        fecha_limite ASC NULLS LAST,
+        CASE estado WHEN 'pendiente' THEN 1 ELSE 2 END,
+        COALESCE(fecha_fin, fecha_limite) ASC NULLS LAST,
         creado_en DESC
     `;
 
@@ -89,20 +79,16 @@ async function crearTarea(req, res) {
       return res.status(400).json({ ok: false, mensaje: error });
     }
 
-    const { titulo, descripcion, prioridad, fecha_limite, estado } = req.body;
+    const { titulo, descripcion, fecha_inicio, fecha_fin, fecha_limite, monto } = req.body;
+    const fin = fecha_fin || fecha_limite || null;
+    const inicio = fecha_inicio || null;
+    const numMonto = monto !== undefined && monto !== null && monto !== "" ? parseFloat(monto) : null;
 
     const resultado = await pool.query(
-      `INSERT INTO tareas (usuario_id, titulo, descripcion, prioridad, fecha_limite, estado)
-       VALUES ($1, $2, $3, $4, $5, $6)
-       RETURNING id, titulo, descripcion, prioridad, fecha_limite, estado, creado_en, actualizado_en`,
-      [
-        req.usuario.id,
-        titulo.trim(),
-        descripcion?.trim() || null,
-        prioridad || "media",
-        fecha_limite || null,
-        estado || "pendiente",
-      ]
+      `INSERT INTO tareas (usuario_id, titulo, descripcion, fecha_inicio, fecha_fin, fecha_limite, estado, monto)
+       VALUES ($1, $2, $3, $4, $5, $6, 'pendiente', $7)
+       RETURNING id, titulo, descripcion, fecha_inicio, fecha_fin, fecha_limite, estado, monto, creado_en, actualizado_en`,
+      [req.usuario.id, titulo.trim(), descripcion?.trim() || null, inicio, fin, fin, numMonto]
     );
 
     res.status(201).json({ ok: true, mensaje: "Tarea creada.", tarea: resultado.rows[0] });
@@ -127,24 +113,31 @@ async function actualizarTarea(req, res) {
       return res.status(404).json({ ok: false, mensaje: "Tarea no encontrada." });
     }
 
-    const { titulo, descripcion, prioridad, fecha_limite, estado } = req.body;
+    const { titulo, descripcion, fecha_inicio, fecha_fin, fecha_limite, estado, monto } = req.body;
+    const fin = fecha_fin !== undefined ? (fecha_fin || null) : (fecha_limite !== undefined ? (fecha_limite || null) : null);
+    const inicio = fecha_inicio !== undefined ? (fecha_inicio || null) : null;
+    const numMonto = monto !== undefined && monto !== null && monto !== "" ? parseFloat(monto) : null;
 
     const resultado = await pool.query(
       `UPDATE tareas
        SET titulo = $1,
            descripcion = $2,
-           prioridad = $3,
-           fecha_limite = $4,
-           estado = $5,
+           fecha_inicio = $3,
+           fecha_fin = $4,
+           fecha_limite = $5,
+           estado = $6,
+           monto = $7,
            actualizado_en = NOW()
-       WHERE id = $6 AND usuario_id = $7
-       RETURNING id, titulo, descripcion, prioridad, fecha_limite, estado, creado_en, actualizado_en`,
+       WHERE id = $8 AND usuario_id = $9
+       RETURNING id, titulo, descripcion, fecha_inicio, fecha_fin, fecha_limite, estado, monto, creado_en, actualizado_en`,
       [
         titulo.trim(),
         descripcion?.trim() || null,
-        prioridad || "media",
-        fecha_limite || null,
+        inicio,
+        fin,
+        fin,
         estado || "pendiente",
+        numMonto,
         id,
         req.usuario.id,
       ]
@@ -177,7 +170,6 @@ async function resumenTareas(req, res) {
     const resultado = await pool.query(
       `SELECT
          COUNT(*) FILTER (WHERE estado = 'pendiente') AS pendientes,
-         COUNT(*) FILTER (WHERE estado = 'en_progreso') AS en_progreso,
          COUNT(*) FILTER (WHERE estado = 'completada') AS completadas
        FROM tareas
        WHERE usuario_id = $1`,

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import type { EstadoTarea, FormularioTarea as DatosTarea, PrioridadTarea, Tarea } from "../servicios/tareasServicio";
+import type { FormularioTarea as DatosTarea, Tarea } from "../servicios/tareasServicio";
 
 interface Props {
   onGuardar: (datos: DatosTarea) => Promise<void>;
@@ -14,18 +14,19 @@ export const FormularioTarea: React.FC<Props> = ({
 }) => {
   const [titulo, setTitulo] = useState("");
   const [descripcion, setDescripcion] = useState("");
-  const [prioridad, setPrioridad] = useState<PrioridadTarea>("media");
-  const [fechaLimite, setFechaLimite] = useState("");
-  const [estado, setEstado] = useState<EstadoTarea>("pendiente");
+  const [fechaInicio, setFechaInicio] = useState("");
+  const [fechaFin, setFechaFin] = useState("");
+  const [monto, setMonto] = useState<string>("");
   const [cargando, setCargando] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     setTitulo(editando?.titulo || "");
     setDescripcion(editando?.descripcion || "");
-    setPrioridad(editando?.prioridad || "media");
-    setFechaLimite(editando?.fecha_limite ? editando.fecha_limite.split("T")[0] : "");
-    setEstado(editando?.estado || "pendiente");
+    setFechaInicio(editando?.fecha_inicio ? editando.fecha_inicio.split("T")[0] : "");
+    const fin = editando?.fecha_fin || editando?.fecha_limite;
+    setFechaFin(fin ? fin.split("T")[0] : "");
+    setMonto(editando?.monto !== null && editando?.monto !== undefined ? String(editando.monto) : "");
     setError(null);
   }, [editando]);
 
@@ -38,21 +39,29 @@ export const FormularioTarea: React.FC<Props> = ({
       return;
     }
 
+    const numMonto = monto ? parseFloat(monto) : null;
+    if (numMonto !== null && (isNaN(numMonto) || numMonto < 0)) {
+      setError("El valor a pagar debe ser un número mayor o igual a 0.");
+      return;
+    }
+
     setCargando(true);
     try {
       await onGuardar({
         titulo: titulo.trim(),
         descripcion: descripcion.trim() || undefined,
-        prioridad,
-        fecha_limite: fechaLimite || null,
-        estado,
+        fecha_inicio: fechaInicio || null,
+        fecha_fin: fechaFin || null,
+        fecha_limite: fechaFin || null,
+        estado: "pendiente",
+        monto: numMonto,
       });
       if (!editando) {
         setTitulo("");
         setDescripcion("");
-        setPrioridad("media");
-        setFechaLimite("");
-        setEstado("pendiente");
+        setFechaInicio("");
+        setFechaFin("");
+        setMonto("");
       }
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : "Error al guardar la tarea.");
@@ -66,12 +75,11 @@ export const FormularioTarea: React.FC<Props> = ({
       {error ? <div className="alerta alerta-error">{error}</div> : null}
 
       <div className="campo-grupo">
-        <label htmlFor="tarea-titulo">Título</label>
+        <label htmlFor="tarea-titulo">Título de la Tarea *</label>
         <input
           id="tarea-titulo"
           type="text"
           className="campo-input"
-          placeholder="Ej. Pagar servicios"
           value={titulo}
           onChange={(e) => setTitulo(e.target.value)}
           disabled={cargando}
@@ -81,75 +89,79 @@ export const FormularioTarea: React.FC<Props> = ({
       </div>
 
       <div className="campo-grupo">
-        <label htmlFor="tarea-descripcion">Descripción</label>
+        <label htmlFor="tarea-descripcion">Descripción (opcional)</label>
         <textarea
           id="tarea-descripcion"
           className="campo-input"
-          placeholder="Detalles opcionales"
           value={descripcion}
           onChange={(e) => setDescripcion(e.target.value)}
           disabled={cargando}
-          rows={3}
+          rows={2}
         />
       </div>
 
       <div className="campo-grupo">
-        <label htmlFor="tarea-prioridad">Prioridad</label>
-        <select
-          id="tarea-prioridad"
-          className="campo-input"
-          value={prioridad}
-          onChange={(e) => setPrioridad(e.target.value as PrioridadTarea)}
-          disabled={cargando}
-        >
-          <option value="baja">Baja</option>
-          <option value="media">Media</option>
-          <option value="alta">Alta</option>
-        </select>
-      </div>
-
-      <div className="campo-grupo">
-        <label htmlFor="tarea-fecha">Fecha límite</label>
+        <label htmlFor="tarea-monto">Valor / Monto a pagar ($)</label>
         <input
-          id="tarea-fecha"
-          type="date"
+          id="tarea-monto"
+          type="number"
+          step="0.01"
+          min="0"
           className="campo-input"
-          value={fechaLimite}
-          onChange={(e) => setFechaLimite(e.target.value)}
+          value={monto}
+          onChange={(e) => setMonto(e.target.value)}
           disabled={cargando}
         />
       </div>
 
-      <div className="campo-grupo">
-        <label htmlFor="tarea-estado">Estado</label>
-        <select
-          id="tarea-estado"
-          className="campo-input"
-          value={estado}
-          onChange={(e) => setEstado(e.target.value as EstadoTarea)}
-          disabled={cargando}
-        >
-          <option value="pendiente">Pendiente</option>
-          <option value="en_progreso">En progreso</option>
-          <option value="completada">Completada</option>
-        </select>
+      {/* Fecha de inicio y Fecha de fin en 2 columnas */}
+      <div className="form-fila-2">
+        <div className="campo-grupo">
+          <label htmlFor="tarea-inicio">Fecha de inicio</label>
+          <input
+            id="tarea-inicio"
+            type="date"
+            className="campo-input"
+            value={fechaInicio}
+            onChange={(e) => setFechaInicio(e.target.value)}
+            disabled={cargando}
+          />
+        </div>
+
+        <div className="campo-grupo">
+          <label htmlFor="tarea-fin">Fecha de fin</label>
+          <input
+            id="tarea-fin"
+            type="date"
+            className="campo-input"
+            value={fechaFin}
+            onChange={(e) => setFechaFin(e.target.value)}
+            disabled={cargando}
+          />
+        </div>
       </div>
 
-      <button type="submit" className="btn-primario" disabled={cargando} style={{ width: "100%" }}>
-        {cargando ? "Guardando..." : editando ? "Actualizar tarea" : "Crear tarea"}
-      </button>
-
-      {editando && onCancelarEdicion ? (
+      <div style={{ display: "flex", gap: "0.75rem", marginTop: "0.5rem" }}>
+        {editando && onCancelarEdicion && (
+          <button
+            type="button"
+            className="btn-secundario"
+            onClick={onCancelarEdicion}
+            disabled={cargando}
+            style={{ flex: 1 }}
+          >
+            Cancelar
+          </button>
+        )}
         <button
-          type="button"
-          className="btn-secundario"
-          onClick={onCancelarEdicion}
+          type="submit"
+          className="btn-primario"
           disabled={cargando}
-          style={{ width: "100%", marginTop: "0.5rem" }}
+          style={{ flex: 1 }}
         >
-          Cancelar
+          {cargando ? "Guardando..." : editando ? "Actualizar Tarea" : "Crear Tarea"}
         </button>
-      ) : null}
+      </div>
     </form>
   );
 };

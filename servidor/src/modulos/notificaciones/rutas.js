@@ -3,7 +3,6 @@ const { autenticarToken } = require("../../middlewares/auth");
 const {
   obtenerNotificaciones,
   obtenerResumen,
-  crearNotificacion,
   marcarLeida,
   marcarTodasLeidas,
   eliminarNotificacion,
@@ -16,7 +15,6 @@ router.use(autenticarToken);
 
 router.get("/", obtenerNotificaciones);
 router.get("/resumen", obtenerResumen);
-router.post("/", crearNotificacion);
 router.put("/marcar-todas", marcarTodasLeidas);
 router.put("/:id/leida", marcarLeida);
 router.delete("/limpiar-leidas", limpiarLeidas);

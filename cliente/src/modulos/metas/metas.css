@@ -2,6 +2,12 @@
    Módulo de Metas — Estilos Visuales (Inspirado en ISTER ister.edu.ec)
    ============================================================================== */
 
+.metas-pagina {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
 .metas-header {
   display: flex;
   justify-content: space-between;
@@ -38,6 +44,13 @@
 .metas-subtitulo {
   font-size: 0.92rem;
   color: var(--texto-secundario);
+}
+
+.metas-acciones-top {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
 
 /* Selector de filtro */
@@ -133,10 +146,10 @@
 
 /* Layout principal */
 .metas-cuerpo {
-  display: grid;
-  grid-template-columns: 1fr 340px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
   gap: 1.5rem;
-  align-items: start;
 }
 
 /* Panel formulario */
@@ -213,6 +226,10 @@
   color: var(--texto-principal);
   line-height: 1.3;
   flex: 1;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
 .meta-badge-estado {
@@ -254,6 +271,10 @@
   font-size: 0.85rem;
   color: var(--texto-secundario);
   line-height: 1.4;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
 /* Barra de progreso de meta con degradado ISTER */

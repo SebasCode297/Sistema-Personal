@@ -5,10 +5,8 @@ const cors = require("cors");
 const { verificarConexion } = require("./db");
 
 const rutasAuth = require("./modulos/auth/rutas");
-const rutasFinanzas = require("./modulos/finanzas/rutas");
 const rutasTareas = require("./modulos/tareas/rutas");
 const rutasMetas = require("./modulos/metas/rutas");
-const rutasCalendario = require("./modulos/calendario/rutas");
 const rutasNotificaciones = require("./modulos/notificaciones/rutas");
 const rutasPerfil = require("./modulos/perfil/rutas");
 
@@ -23,25 +21,10 @@ app.use(
 );
 app.use(express.json());
 
-// Módulo de Autenticación (Fase 2)
 app.use("/api/auth", rutasAuth);
-
-// Módulo de Finanzas (Fase 4)
-app.use("/api/finanzas", rutasFinanzas);
-
-// Módulo de Tareas (Fase 5)
 app.use("/api/tareas", rutasTareas);
-
-// Módulo de Metas (Fase 6)
 app.use("/api/metas", rutasMetas);
-
-// Módulo de Calendario (Fase 7)
-app.use("/api/calendario", rutasCalendario);
-
-// Módulo de Notificaciones (Fase 8)
 app.use("/api/notificaciones", rutasNotificaciones);
-
-// Módulo de Perfil (Fase 9)
 app.use("/api/perfil", rutasPerfil);
 
 app.get("/api/salud", async (_req, res) => {
@@ -51,7 +34,6 @@ app.get("/api/salud", async (_req, res) => {
     res.json({
       ok: true,
       servicio: "MiPanel API",
-      fase: 1,
       baseDatos: {
         estado: "conectada",
         nombre: datosBd.base_datos,
@@ -62,7 +44,6 @@ app.get("/api/salud", async (_req, res) => {
     res.status(500).json({
       ok: false,
       servicio: "MiPanel API",
-      fase: 1,
       baseDatos: {
         estado: "error",
         mensaje: error.message,

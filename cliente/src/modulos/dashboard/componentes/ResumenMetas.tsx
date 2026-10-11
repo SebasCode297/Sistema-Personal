@@ -5,16 +5,16 @@ import { metasServicio } from "../../metas/servicios/metasServicio";
 
 export const ResumenMetas: React.FC = () => {
   const navigate = useNavigate();
-  const [activas, setActivas] = useState(0);
+  const [total, setTotal] = useState(0);
   const [cargando, setCargando] = useState(true);
 
   useEffect(() => {
     async function cargar() {
       try {
         const res = await metasServicio.resumenMetas();
-        if (res.ok) setActivas(parseInt(res.resumen.activas));
+        if (res.ok) setTotal(parseInt(res.resumen.total));
       } catch {
-        setActivas(0);
+        setTotal(0);
       } finally {
         setCargando(false);
       }
@@ -25,11 +25,11 @@ export const ResumenMetas: React.FC = () => {
   return (
     <TarjetaMetrica
       etiqueta="Metas"
-      valor={cargando ? "Cargando..." : `${activas} activa${activas !== 1 ? "s" : ""}`}
-      subtexto="Objetivos en seguimiento"
+      valor={cargando ? "Cargando..." : `${total} registrada${total !== 1 ? "s" : ""}`}
+      subtexto="Objetivos personales"
       badgeTexto="Activo"
       badgeTipo="positivo"
-      textoEstado="Módulo activo"
+      textoEstado="En curso"
       enlaceTexto="Ver metas"
       onClickEnlace={() => navigate("/metas")}
     />

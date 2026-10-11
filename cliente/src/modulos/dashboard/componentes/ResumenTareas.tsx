@@ -26,10 +26,10 @@ export const ResumenTareas: React.FC = () => {
     <TarjetaMetrica
       etiqueta="Tareas"
       valor={cargando ? "Cargando..." : `${pendientes} pendientes`}
-      subtexto="Actividades por completar"
-      badgeTexto="Módulo activo"
+      subtexto="Actividades pendientes"
+      badgeTexto="Activo"
       badgeTipo="positivo"
-      textoEstado="Independiente de Finanzas y Metas"
+      textoEstado="Por completar"
       enlaceTexto="Ver tareas"
       onClickEnlace={() => navigate("/tareas")}
     />

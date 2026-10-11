@@ -1,13 +1,13 @@
 const { pool } = require("../../db");
+const { generarAvisosDeMetas } = require("./avisosMetas");
 
-/**
- * Obtener notificaciones del usuario autenticado
- */
 async function obtenerNotificaciones(req, res) {
   const usuarioId = req.usuario.id;
   const { soloNoLeidas } = req.query;
 
   try {
+    await generarAvisosDeMetas(usuarioId);
+
     let consulta = "SELECT * FROM notificaciones WHERE usuario_id = $1";
     const valores = [usuarioId];
 
@@ -25,15 +25,14 @@ async function obtenerNotificaciones(req, res) {
   }
 }
 
-/**
- * Obtener conteo de notificaciones no leídas y resumen
- */
 async function obtenerResumen(req, res) {
   const usuarioId = req.usuario.id;
 
   try {
+    await generarAvisosDeMetas(usuarioId);
+
     const consulta = `
-      SELECT 
+      SELECT
         COUNT(*) AS total,
         COUNT(*) FILTER (WHERE leida = false) AS no_leidas
       FROM notificaciones
@@ -55,55 +54,15 @@ async function obtenerResumen(req, res) {
   }
 }
 
-/**
- * Crear una nueva notificación
- */
-async function crearNotificacion(req, res) {
-  const usuarioId = req.usuario.id;
-  const { titulo, mensaje, tipo, enlace } = req.body;
-
-  if (!titulo || !titulo.trim()) {
-    return res.status(400).json({ ok: false, mensaje: "El título es obligatorio" });
-  }
-
-  if (!mensaje || !mensaje.trim()) {
-    return res.status(400).json({ ok: false, mensaje: "El mensaje es obligatorio" });
-  }
-
-  try {
-    const consulta = `
-      INSERT INTO notificaciones (usuario_id, titulo, mensaje, tipo, enlace)
-      VALUES ($1, $2, $3, $4, $5)
-      RETURNING *
-    `;
-    const valores = [
-      usuarioId,
-      titulo.trim(),
-      mensaje.trim(),
-      tipo || "info",
-      enlace ? enlace.trim() : null,
-    ];
-
-    const resultado = await pool.query(consulta, valores);
-    res.status(201).json({ ok: true, datos: resultado.rows[0] });
-  } catch (error) {
-    console.error("Error al crear notificación:", error);
-    res.status(500).json({ ok: false, mensaje: "Error interno al crear notificación" });
-  }
-}
-
-/**
- * Marcar una notificación específica como leída
- */
 async function marcarLeida(req, res) {
   const usuarioId = req.usuario.id;
   const { id } = req.params;
 
   try {
     const consulta = `
-      UPDATE notificaciones 
-      SET leida = true 
-      WHERE id = $1 AND usuario_id = $2 
+      UPDATE notificaciones
+      SET leida = true
+      WHERE id = $1 AND usuario_id = $2
       RETURNING *
     `;
     const resultado = await pool.query(consulta, [id, usuarioId]);
@@ -119,16 +78,11 @@ async function marcarLeida(req, res) {
   }
 }
 
-/**
- * Marcar todas las notificaciones del usuario como leídas
- */
 async function marcarTodasLeidas(req, res) {
   const usuarioId = req.usuario.id;
 
   try {
-    const consulta = "UPDATE notificaciones SET leida = true WHERE usuario_id = $1";
-    await pool.query(consulta, [usuarioId]);
-
+    await pool.query("UPDATE notificaciones SET leida = true WHERE usuario_id = $1", [usuarioId]);
     res.json({ ok: true, mensaje: "Todas las notificaciones marcadas como leídas" });
   } catch (error) {
     console.error("Error al marcar todas las notificaciones:", error);
@@ -136,16 +90,15 @@ async function marcarTodasLeidas(req, res) {
   }
 }
 
-/**
- * Eliminar una notificación
- */
 async function eliminarNotificacion(req, res) {
   const usuarioId = req.usuario.id;
   const { id } = req.params;
 
   try {
-    const consulta = "DELETE FROM notificaciones WHERE id = $1 AND usuario_id = $2 RETURNING id";
-    const resultado = await pool.query(consulta, [id, usuarioId]);
+    const resultado = await pool.query(
+      "DELETE FROM notificaciones WHERE id = $1 AND usuario_id = $2 RETURNING id",
+      [id, usuarioId]
+    );
 
     if (resultado.rowCount === 0) {
       return res.status(404).json({ ok: false, mensaje: "Notificación no encontrada" });
@@ -158,16 +111,11 @@ async function eliminarNotificacion(req, res) {
   }
 }
 
-/**
- * Limpiar todas las notificaciones ya leídas
- */
 async function limpiarLeidas(req, res) {
   const usuarioId = req.usuario.id;
 
   try {
-    const consulta = "DELETE FROM notificaciones WHERE usuario_id = $1 AND leida = true";
-    await pool.query(consulta, [usuarioId]);
-
+    await pool.query("DELETE FROM notificaciones WHERE usuario_id = $1 AND leida = true", [usuarioId]);
     res.json({ ok: true, mensaje: "Notificaciones leídas eliminadas" });
   } catch (error) {
     console.error("Error al limpiar notificaciones leídas:", error);
@@ -178,7 +126,6 @@ async function limpiarLeidas(req, res) {
 module.exports = {
   obtenerNotificaciones,
   obtenerResumen,
-  crearNotificacion,
   marcarLeida,
   marcarTodasLeidas,
   eliminarNotificacion,

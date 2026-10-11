@@ -7,8 +7,19 @@
   flex-direction: column;
   gap: 1.5rem;
   width: 100%;
-  max-width: 800px;
-  margin: 0 auto;
+}
+
+.perfil-grid-formularios {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+@media (max-width: 1024px) {
+  .perfil-grid-formularios {
+    grid-template-columns: 1fr;
+  }
 }
 
 .perfil-header {
